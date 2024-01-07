@@ -6,13 +6,15 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 13:51:37 by aulicna           #+#    #+#              #
-#    Updated: 2024/01/07 13:57:42 by aulicna          ###   ########.fr        #
+#    Updated: 2024/01/07 14:47:26 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phonebook
 
-SRC = megaphone.cpp
+SRC = main.cpp \
+	PhoneBook.class.cpp \
+	Contanct.class.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -23,7 +25,7 @@ CPP = c++
 RM = rm -f
 
 all: $(NAME)
-	@echo "megaphone executable ready ✅"
+	@echo "phonebook executable ready ✅"
 
 $(NAME): $(OBJ)
 	$(CPP) $(CFLAGS) -o $@ $^
