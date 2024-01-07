@@ -6,15 +6,15 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 13:51:37 by aulicna           #+#    #+#              #
-#    Updated: 2024/01/07 14:47:26 by aulicna          ###   ########.fr        #
+#    Updated: 2024/01/07 16:23:54 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 
 SRC = main.cpp \
-	PhoneBook.class.cpp \
-	Contanct.class.cpp
+	Contact.class.cpp \
+	PhoneBook.class.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
