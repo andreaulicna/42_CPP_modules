@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:04:12 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/08 11:38:39 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/08 15:38:22 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ class PhoneBook
 public:
 	PhoneBook(void);
 	~PhoneBook(void);
+
+	Contact	getContacts(void);
 
 	void	add(void);	
 	void	search(int index);

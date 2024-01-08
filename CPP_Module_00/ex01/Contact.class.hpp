@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:47:37 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/08 11:46:23 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/08 15:38:37 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ public:
 	~Contact(void);
 
 	// Setters
-	void	setIndex(int index);
 	void	setContact(int index);
 //	void	setFirstName(std::string str);
 //	void	setLastName(std::string str);
@@ -43,7 +42,6 @@ public:
 	std::string	getDarkestSecret(void) const;	
 
 private:
-	int			_index;
 	std::string	_firstName;
 	std::string	_lastName;
 	std::string	_nickname;

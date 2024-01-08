@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:48:34 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/08 11:52:08 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/08 15:29:52 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,8 @@ Contact::~Contact(void)
 	return ;
 }
 
-// Setters
-void	Contact::setIndex(int index)
-{
-	this->_index = index;
-}
-
 void	Contact::setContact(int index)
 {
-	this->_index = index;
 	std::cout << "Enter first name: ";
 	std::getline(std::cin, this->_firstName);
 	while (this->_firstName.length() == 0 || std::iswspace(this->_firstName[0]))
