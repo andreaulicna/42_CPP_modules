@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:35:16 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/07 17:49:01 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/08 11:40:58 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	main(void)
 	std::string	command;
 	PhoneBook	phonebook;
 
+	phonebook.add();
+	phonebook.add();
+	phonebook.add();
 	while (command != "EXIT")
 	{
 		std::cout << "Enter a command: ";
@@ -28,7 +31,7 @@ int	main(void)
 		else if (command == "ADD")
 			phonebook.add();
 		else if (command == "SEARCH")
-			std::cout << "jou" << std::endl;
+			phonebook.search(0);
 		else
 			std::cout << "Error: Not a valid command. "
 				"Enter ADD, SEARCH or EXIT." << std::endl;

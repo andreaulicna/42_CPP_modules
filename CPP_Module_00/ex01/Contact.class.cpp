@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:48:34 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/07 17:09:46 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/08 11:52:08 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,17 @@ Contact::~Contact(void)
 }
 
 // Setters
+void	Contact::setIndex(int index)
+{
+	this->_index = index;
+}
+
 void	Contact::setContact(int index)
 {
 	this->_index = index;
 	std::cout << "Enter first name: ";
 	std::getline(std::cin, this->_firstName);
-	while (this->_firstName.length() == 0)
+	while (this->_firstName.length() == 0 || std::iswspace(this->_firstName[0]))
 	{
 		std::cout << "Error: First name cannot be empty." << std::endl;
 		std::cout << "Enter first name: ";
@@ -36,7 +41,7 @@ void	Contact::setContact(int index)
 	}
 	std::cout << "Enter last name: ";
 	std::getline(std::cin, this->_lastName);
-	while (this->_lastName.length() == 0)
+	while (this->_lastName.length() == 0 || std::iswspace(this->_lastName[0]))
 	{
 		std::cout << "Error: Last name cannot be empty." << std::endl;
 		std::cout << "Enter last name: ";
@@ -44,7 +49,7 @@ void	Contact::setContact(int index)
 	}
 	std::cout << "Enter nickname: ";
 	std::getline(std::cin, this->_nickname);
-	while (this->_nickname.length() == 0)
+	while (this->_nickname.length() == 0 || std::iswspace(this->_nickname[0]))
 	{
 		std::cout << "Error: Nickname cannot be empty." << std::endl;
 		std::cout << "Enter nickname: ";
@@ -52,7 +57,8 @@ void	Contact::setContact(int index)
 	}
 	std::cout << "Enter phone number: ";
 	std::getline(std::cin, this->_phoneNumber);
-	while (this->_phoneNumber.length() == 0)
+	while (this->_phoneNumber.length() == 0
+		|| std::iswspace(this->_phoneNumber[0]))
 	{
 		std::cout << "Error: Phone number cannot be empty." << std::endl;
 		std::cout << "Enter phone number: ";
@@ -60,7 +66,8 @@ void	Contact::setContact(int index)
 	}
 	std::cout << "Enter darkest secrete: ";
 	std::getline(std::cin, this->_darkestSecret);
-	while (this->_darkestSecret.length() == 0)
+	while (this->_darkestSecret.length() == 0
+		|| std::iswspace(this->_darkestSecret[0]))
 	{
 		std::cout << "Error: Darkest secrete cannot be empty." << std::endl;
 		std::cout << "Enter darkest secrete: ";
