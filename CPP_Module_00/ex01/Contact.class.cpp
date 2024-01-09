@@ -6,24 +6,47 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:48:34 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/08 15:29:52 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/09 12:53:15 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.class.hpp"
 
+/* Constructor */
 Contact::Contact(void)
 {
 	return ;
 }
 
+/* Destructor */
 Contact::~Contact(void)
 {
 	return ;
 }
 
-void	Contact::setContact(int index)
+void	Contact::setContactCheatFirst(void)
 {
+	this->_firstName = "1";
+	this->_lastName = "2";
+	this->_nickname = "3";
+	this->_phoneNumber = "4";
+	this->_darkestSecret = "5";
+}
+
+void	Contact::setContactCheat(void)
+{
+	this->_firstName = "jou";
+	this->_lastName = "hej";
+	this->_nickname = "haha";
+	this->_phoneNumber = "ahsfks;djf";
+	this->_darkestSecret = "tbtltt";
+}
+
+// Setters
+void	Contact::setContact()
+{
+	std::cout << "--------------------------" << std::endl;
+	std::cout << "*** Adding New Contact ***" << std::endl;
 	std::cout << "Enter first name: ";
 	std::getline(std::cin, this->_firstName);
 	while (this->_firstName.length() == 0 || std::iswspace(this->_firstName[0]))
@@ -66,9 +89,13 @@ void	Contact::setContact(int index)
 		std::cout << "Enter darkest secrete: ";
 		std::getline(std::cin, this->_darkestSecret);
 	}
+	std::cout << std::endl;
+	std::cout << "Contact successfully added." << std::endl;
+	std::cout << "--------------------------" << std::endl;
+	std::cout << std::endl;
 }
 
-// Getter
+// Getters
 std::string	Contact::getFirstName(void) const
 {
 	return (this->_firstName);

@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:47:37 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/08 15:38:37 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/09 12:44:41 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,15 @@
 class Contact
 {
 public:
-	// Constructor
+	/* Constructor */
 	Contact(void);
-	// Destructor
+	/* Destructor */
 	~Contact(void);
 
 	// Setters
-	void	setContact(int index);
-//	void	setFirstName(std::string str);
-//	void	setLastName(std::string str);
-//	void	setNickname(std::string str);
-//	void	setPhoneNumber(std::string str);
-//	void	setDarkestSecrete(std::string str);
+	void	setContact();
+	void	setContactCheat(void);
+	void	setContactCheatFirst(void);
 
 	// Getters
 	std::string	getFirstName(void) const;

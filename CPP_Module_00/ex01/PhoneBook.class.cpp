@@ -6,12 +6,13 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:05:14 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/08 15:39:23 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/09 12:48:08 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
 
+/* Constructor */
 PhoneBook::PhoneBook(void)
 {
 	this->_contactsCount = 0;
@@ -21,84 +22,67 @@ PhoneBook::PhoneBook(void)
 	std::cout << std::endl;
 	std::cout << "Available commands:\nADD, SEARCH, EXIT" << std::endl;
 	std::cout << "--------------------" << std::endl;
-	std::cout << std::endl;
 	return ;
 }
 
+/* Destructor */
 PhoneBook::~PhoneBook(void)
 {
 	return ;
 }
 
-//static int	add_handle_overwritting(PhoneBook phonebook, std::string input)
-//{
-//	std::cout << "Warning: The Awesome PhoneBook is full. Adding this "
-//		"contact will remove the oldest contact stored, contact #1. "
-//		"Do you want to proceed? [Y/n]: ";
-//	std::getline(std::cin, input);
-//	while (input != "\r" && input != "Y" && input != "y"
-//		&& input != "n" && input != "N")
-//	{
-//		std::cout << "Do you want to proceed? [Y/n]: ";
-//		std::getline(std::cin, input);
-//	}
-//	this->_contactsCount -= 1;
-//	if (input == "\r" || input == "Y" || input == "y")
-//	{
-//		for (int i = 0; i < 7; i++)
-//			this->_contacts[i] = this->_contacts[i + 1];
-//		return (1);
-//	}
-//	else if (input == "N" || input == "n")
-//	{
-//		std::cout << "Abort: A new contact will not be added." << std::endl;
-//		return (0);
-//	}
-//}
+void	PhoneBook::addCheat(Contact c1, Contact c2, Contact c3, Contact c4, Contact c5, Contact c6, Contact c7, Contact c8)
+{
+	this->_contacts[0] = c1;
+	this->_contacts[1] = c2;
+	this->_contacts[2] = c2;
+	this->_contacts[3] = c2;
+	this->_contacts[4] = c2;
+	this->_contacts[5] = c2;
+	//this->_contacts[6] = c2;
+	//this->_contacts[7] = c2;
+	this->_contactsCount = 6;
+}
+
+static int	add_handle_overwritting(void)
+{
+	std::string	input;
+
+	std::cout << "Warning: The Awesome PhoneBook is full. Adding this "
+		"contact will remove the oldest contact stored, contact #1. "
+		"Do you want to proceed? [y/N]: ";
+	std::getline(std::cin, input);
+	while (input.length() != 0 && input != "Y" && input != "y"
+		&& input != "n" && input != "N")
+	{
+		std::cout << "Do you want to proceed? [y/N]: ";
+		std::getline(std::cin, input);
+	}
+	if (input == "Y" || input == "y")
+		return (1);
+	std::cout << "Abort: A new contact will not be added." << std::endl;
+	return (0);
+}
 
 void	PhoneBook::add(void)
 {
-	int			index;
-	std::string	input;
+	Contact	tmp;
 
-	index = this->_contactsCount;
-	if (index > 7)
+	if (this->_contactsCount >= 8)
 	{
-	//	if(!add_handle_overwritting(this, input))
-	//		return ;
-	//	index = 0;
-		std::cout << "Warning: The Awesome PhoneBook is full. Adding this "
-			"contact will remove the oldest contact stored, contact #1. "
-			"Do you want to proceed? [Y/n]: ";
-		std::getline(std::cin, input);
-		while (input != "\r" && input != "Y" && input != "y"
-			&& input != "n" && input != "N")
-		{
-			std::cout << "Do you want to proceed? [Y/n]: ";
-			std::getline(std::cin, input);
-		}
-		this->_contactsCount -= 1;
-		if (input == "\r" || input == "Y" || input == "y")
-		{
-			for (int i = 0; i < 7; i++)
-				this->_contacts[i] = this->_contacts[i + 1];
-			index = 0;
-		}
-		else if (input == "N" || input == "n")
-		{
-			std::cout << "Abort: A new contact will not be added." << std::endl;
+		if(!add_handle_overwritting())
 			return ;
-		}
+		this->_contacts[0].setContact();
+		tmp = this->_contacts[0];
+		for (int i = 0; i < 7; i++)
+			this->_contacts[i] = this->_contacts[i + 1];
+		this->_contacts[7] = tmp;
 	}
 	else
+	{
 		this->_contactsCount += 1;
-	std::cout << "--------------------------" << std::endl;
-	std::cout << "*** Adding New Contact ***" << std::endl;
-	this->_contacts[index].setContact(index);
-	std::cout << std::endl;
-	std::cout << "Contact added as contact #" << index + 1 << "." << std::endl;
-	std::cout << "--------------------------" << std::endl;
-	std::cout << std::endl;
+		this->_contacts[this->_contactsCount - 1].setContact();
+	}
 	return ;
 }
 
@@ -125,6 +109,24 @@ static void	printColumn(std::string str)
 	std::cout << "|";
 }
 
+void	PhoneBook::displayContacts(void) const
+{
+	std::cout << "+============================================+" << std::endl;
+	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
+	std::cout << "+============================================+" << std::endl;
+
+	for (int i = 0; i < this->_contactsCount; i++)
+	{
+		std::cout << "|";
+		printColumn(std::to_string(i + 1));
+		printColumn(this->_contacts[i].getFirstName());
+		printColumn(this->_contacts[i].getLastName());
+		printColumn(this->_contacts[i].getNickname());
+		std::cout << std::endl;
+	}
+	std::cout << "|----------|----------|----------|----------|" << std::endl;
+}
+
 static void	printContact(Contact contact)
 {
 	std::cout << "First name: " << contact.getFirstName() << std::endl;
@@ -134,29 +136,11 @@ static void	printContact(Contact contact)
 	std::cout << "Darkest Secret: " << contact.getDarkestSecret() << std::endl;
 }
 
-void	PhoneBook::displayContacts(void)
-{
-	std::cout << "+============================================+" << std::endl;
-	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
-	std::cout << "+============================================+" << std::endl;
-
-	for (int i = 0; i < 8; i++)
-	{
-		std::cout << "|";
-		printColumn(std::to_string(i + 1));
-		printColumn(this->_contacts[i].getFirstName());
-		printColumn(this->_contacts[i].getLastName());
-		printColumn(this->_contacts[i].getNickname());
-		std::cout << std::endl;
-	}
-}
-
-void	PhoneBook::search(int index)
+void	PhoneBook::search(int index) const
 {
 	std::string	input;
 
 	this->displayContacts();
-	std::cout << "|----------|----------|----------|----------|" << std::endl;
 	std::cout << std::endl << "Enter the index of the entry to display: ";
 	std::getline(std::cin, input);
 	for (int i = 0; i < 8; i++)
