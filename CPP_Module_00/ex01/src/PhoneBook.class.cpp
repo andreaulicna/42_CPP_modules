@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:05:14 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/09 14:54:02 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/09 22:11:15 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	PhoneBook::getCountactsCount(void) const
 	return (this->_contactsCount);
 }
 
-// Other functions
+// Other methods
 static int	addHandleOverwritting(void)
 {
 	std::string	input;
