@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:47:37 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/09 12:44:41 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:48:18 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ public:
 
 	// Setters
 	void	setContact();
-	void	setContactCheat(void);
-	void	setContactCheatFirst(void);
+	void	setFirstName(std::string value);
+	void	setLastName(std::string value);
+	void	setNickname(std::string value);
+	void	setPhoneNumber(std::string value);
+	void	setDarkestSecret(std::string value);
 
 	// Getters
 	std::string	getFirstName(void) const;

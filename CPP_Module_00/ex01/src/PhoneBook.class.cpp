@@ -6,21 +6,20 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:05:14 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/09 12:48:08 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/09 14:54:02 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
+#include "../incl/PhoneBook.class.hpp"
 
 /* Constructor */
 PhoneBook::PhoneBook(void)
 {
 	this->_contactsCount = 0;
-	std::cout << "||======================||" << std::endl;
-	std::cout << "|| My Awesome PhoneBook ||" << std::endl;
-	std::cout << "||======================||" << std::endl;
-	std::cout << std::endl;
-	std::cout << "Available commands:\nADD, SEARCH, EXIT" << std::endl;
+	std::cout << "||======================||\n";
+	std::cout << "|| My Awesome PhoneBook ||\n";
+	std::cout << "||======================||\n\n";
+	std::cout << "Available commands:\nADD, SEARCH, EXIT\n";
 	std::cout << "--------------------" << std::endl;
 	return ;
 }
@@ -31,20 +30,19 @@ PhoneBook::~PhoneBook(void)
 	return ;
 }
 
-void	PhoneBook::addCheat(Contact c1, Contact c2, Contact c3, Contact c4, Contact c5, Contact c6, Contact c7, Contact c8)
+// Getters
+Contact	PhoneBook::getContact(int index) const
 {
-	this->_contacts[0] = c1;
-	this->_contacts[1] = c2;
-	this->_contacts[2] = c2;
-	this->_contacts[3] = c2;
-	this->_contacts[4] = c2;
-	this->_contacts[5] = c2;
-	//this->_contacts[6] = c2;
-	//this->_contacts[7] = c2;
-	this->_contactsCount = 6;
+	return (this->_contacts[index]);
 }
 
-static int	add_handle_overwritting(void)
+int	PhoneBook::getCountactsCount(void) const
+{
+	return (this->_contactsCount);
+}
+
+// Other functions
+static int	addHandleOverwritting(void)
 {
 	std::string	input;
 
@@ -70,7 +68,7 @@ void	PhoneBook::add(void)
 
 	if (this->_contactsCount >= 8)
 	{
-		if(!add_handle_overwritting())
+		if(!addHandleOverwritting())
 			return ;
 		this->_contacts[0].setContact();
 		tmp = this->_contacts[0];
@@ -86,7 +84,7 @@ void	PhoneBook::add(void)
 	return ;
 }
 
-static void	printColumn(std::string str)
+static void	printColumnOfPhonebook(std::string str)
 {
 	int	len;
 
@@ -109,47 +107,61 @@ static void	printColumn(std::string str)
 	std::cout << "|";
 }
 
-void	PhoneBook::displayContacts(void) const
+static int	displayPhonebook(PhoneBook *phonebook)
 {
-	std::cout << "+============================================+" << std::endl;
-	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
-	std::cout << "+============================================+" << std::endl;
+	if (phonebook->getCountactsCount() == 0)
+	{
+		std::cout << "My Awesome PhoneBook: Nothing to display as no contacts "
+			<< "have been saved yet." << std::endl;
+			return (0);
+	}
+	std::cout << "+============================================+\n";
+	std::cout << "|     Index|First Name| Last Name|  Nickname|\n";
+	std::cout << "+============================================+\n";
 
-	for (int i = 0; i < this->_contactsCount; i++)
+	for (int i = 0; i < phonebook->getCountactsCount(); i++)
 	{
 		std::cout << "|";
-		printColumn(std::to_string(i + 1));
-		printColumn(this->_contacts[i].getFirstName());
-		printColumn(this->_contacts[i].getLastName());
-		printColumn(this->_contacts[i].getNickname());
-		std::cout << std::endl;
+		printColumnOfPhonebook(std::to_string(i + 1));
+		printColumnOfPhonebook(phonebook->getContact(i).getFirstName());
+		printColumnOfPhonebook(phonebook->getContact(i).getLastName());
+		printColumnOfPhonebook(phonebook->getContact(i).getNickname());
 	}
-	std::cout << "|----------|----------|----------|----------|" << std::endl;
+	std::cout << "\n|----------|----------|----------|----------|" << std::endl;
+	return (1);
 }
 
-static void	printContact(Contact contact)
+static void	printFoundEntry(Contact contact)
 {
-	std::cout << "First name: " << contact.getFirstName() << std::endl;
-	std::cout << "Last name: " << contact.getLastName() << std::endl;
-	std::cout << "Nickname: " << contact.getNickname() << std::endl;
-	std::cout << "Phone number: " << contact.getPhoneNumber() << std::endl;
-	std::cout << "Darkest Secret: " << contact.getDarkestSecret() << std::endl;
+	std::cout << "First name: " << contact.getFirstName() << '\n';
+	std::cout << "Last name: " << contact.getLastName() << '\n';
+	std::cout << "Nickname: " << contact.getNickname() << '\n';
+	std::cout << "Phone number: " << contact.getPhoneNumber() << '\n';
+	std::cout << "Darkest Secret: " << contact.getDarkestSecret() << '\n';
 }
 
-void	PhoneBook::search(int index) const
+void	PhoneBook::search(void) const
 {
 	std::string	input;
 
-	this->displayContacts();
-	std::cout << std::endl << "Enter the index of the entry to display: ";
+	if (!displayPhonebook((PhoneBook *) this))
+		return ;
+	std::cout << "\nEnter the index of the entry to display: ";
 	std::getline(std::cin, input);
+	if (input > std::to_string(this->_contactsCount) && input < "9")
+	{
+		std::cout << "Nothing to display for entry #" << input
+			<< " as the phonebook has only " << this->_contactsCount
+			<< " contact(s) so far." << std::endl;
+		return ;
+	}
 	for (int i = 0; i < 8; i++)
 	{
 		if (input == std::to_string(i + 1))
 		{
-			std::cout << "Displaying entry #" << input << std::endl;
-			std::cout << "-------------------" << std::endl;
-			printContact(this->_contacts[i]);
+			std::cout << "Displaying entry #" << input << '\n';
+			std::cout << "-------------------\n";
+			printFoundEntry(this->_contacts[i]);
 			std::cout << "-------------------" << std::endl;
 			return ;
 		}
