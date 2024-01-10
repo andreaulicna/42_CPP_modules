@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 22:05:28 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/09 23:07:04 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/10 19:40:37 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,44 @@
 #include <iostream>
 #include "Account.hpp"
 
-int	Account::_nbAccounts = 8;
-int	Account::_totalAmount = 20049;
+int	Account::_nbAccounts = 0;
+int	Account::_totalAmount = 0;
 int	Account::_totalNbDeposits = 0;
 int	Account::_totalNbWithdrawals = 0;
 
 /* Constructor - no input argument */
 Account::Account(void)
 {
-	this->_accountIndex = 2;
-	this->_amount = 1521;
-	this->_nbDeposits = 1;
-	this->_nbWithdrawals = 0;
 	return ;
 }
 
-///* Constructor - initial deposit as input argument */
-//Account::Account( int initial_deposit )
-//{
-//
-//}
-//
+/* Constructor - initial deposit as input argument */
+Account::Account( int initial_deposit )
+{
+	// Set values for the newly created account
+	this->_accountIndex = Account::_nbAccounts;
+	this->_amount = initial_deposit;
+	this->_nbDeposits = 0;
+	this->_nbWithdrawals = 0;
+
+	// Adjust global values
+	Account::_nbAccounts += 1;
+	Account::_totalAmount += this->checkAmount();
+
+	// Print a message about the newly created account
+	_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ";"
+		<< "amount:" << this->checkAmount() << ";"
+		<< "created" << std::endl;
+}
+
 /* Destructor */
 Account::~Account( void )
 {
-	return ;
+	_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ";"
+		<< "amount:" << this->checkAmount() << ";"
+		<< "closed" << std::endl;
 }
 //
 //// Getters
@@ -73,26 +86,65 @@ void	Account::displayAccountsInfos( void )
 }
 //
 //// Other methods - public
-//void	Account::makeDeposit( int deposit )
-//{
-//
-//}
-//
-//bool	Account::makeWithdrawal( int withdrawal )
-//{
-//
-//}
-//
-//int		Account::checkAmount( void ) const
-//{
-//
-//}
+void	Account::makeDeposit( int deposit )
+{
+	// Adjust the account values that got affected by the deposit
+	this->_amount += deposit;
+	this->_nbDeposits += 1;
+
+	// Adjust the global values
+	Account::_totalAmount += deposit;
+	Account::_totalNbDeposits += 1;
+
+	// Print a message confirming the deposit
+	_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ";"
+		<< "p_amount:" << this->checkAmount() - deposit << ";"
+		<< "deposit:" << deposit << ";"
+		<< "amount:" << this->checkAmount() << ";"
+		<< "nb_deposits:" << this->_nbDeposits << std::endl;
+}
+
+bool	Account::makeWithdrawal( int withdrawal )
+{
+	// Check for the case when there is not enough money to make the withdrawal
+	if (withdrawal > this->checkAmount())
+	{
+		_displayTimestamp();
+		std::cout << "index:" << this->_accountIndex << ";"
+			<< "p_amount:" << this->checkAmount() << ";"
+			<< "withdrawal:refused" << std::endl;
+		return (false);
+	}
+
+	// Adjust the account values that got affected by the withdrawal
+	this->_amount -= withdrawal;
+	this->_nbWithdrawals += 1;
+
+	// Adjust the global values
+	Account::_totalAmount -= withdrawal;
+	Account::_totalNbWithdrawals += 1;
+
+	// Print a message confirming the withdrawal
+	_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ";"
+		<< "p_amount:" << this->checkAmount() + withdrawal << ";"
+		<< "withdrawal:" << withdrawal << ";"
+		<< "amount:" << this->checkAmount() << ";"
+		<< "nb_withdrawals:" << this->_nbWithdrawals << std::endl;
+	return (true);
+}
+
+int		Account::checkAmount( void ) const
+{
+	return (this->_amount);
+}
 
 void	Account::displayStatus( void ) const
 {
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";"
-		<< "amount:" << this->_amount << ";"
+		<< "amount:" << this->checkAmount() << ";"
 		<< "deposits:" << this->_nbDeposits << ";"
 		<< "withdrawals:" << this->_nbWithdrawals << std::endl;
 }
