@@ -6,13 +6,17 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:05:14 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/11 14:04:04 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/11 14:38:55 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/PhoneBook.class.hpp"
 
-/* Constructor */
+/**
+ * @brief	Constructor.
+ * 
+ * Prints a welcome message and available commands.
+*/
 PhoneBook::PhoneBook(void)
 {
 	this->_contactsCount = 0;
@@ -24,7 +28,9 @@ PhoneBook::PhoneBook(void)
 	return ;
 }
 
-/* Destructor */
+/**
+ * @brief	Destructor.
+*/
 PhoneBook::~PhoneBook(void)
 {
 	return ;
@@ -42,6 +48,14 @@ int	PhoneBook::getCountactsCount(void) const
 }
 
 // Other methods
+/**
+ * @brief	Asks the user whether the oldest contact should be overwritten when
+ * the phonebook is full.
+ *
+ * The default is N to avoid accidently deleted a contact
+ *
+ * @return 	1 if the user chooses to proceed, 0 if the user decides to abort
+ */
 static int	addHandleOverwritting(void)
 {
 	std::string	input;
@@ -62,6 +76,18 @@ static int	addHandleOverwritting(void)
 	return (0);
 }
 
+/**
+ * @brief	Saves a new contact in the phonebook.
+ *
+ * If the phonebook is full, it invokes addHandleOverwriting to ask the user
+ * whether the oldest contact (#1) should be overwritten. If so, the contact
+ * is saved on that position and then the whole phonebook is shifted, so that
+ * the newly added contact is now the youngest, i.e #8. Otherwise, an abort
+ * message is printed and no new contact added.
+ *
+ * If the phonebook is not full, the function adds a new contact to it
+ * by prompting the user to input information one field at a time.
+ */
 void	PhoneBook::add(void)
 {
 	Contact	tmp;
@@ -84,6 +110,15 @@ void	PhoneBook::add(void)
 	return ;
 }
 
+/**
+ * @brief Prints a formatted column of the phonebook.
+ * 
+ * It ensures a maximum width of 10 characters and right-alignment. When
+ * the string is longer than 10 characters, it is truncated and the last
+ * displayable character is replaced by a dot.
+ *
+ * @param	str	the string to be printed
+ */
 static void	printColumnOfPhonebook(std::string str)
 {
 	int	len;
@@ -107,6 +142,15 @@ static void	printColumnOfPhonebook(std::string str)
 	std::cout << "|";
 }
 
+/**
+ * @brief	Displays the contents of the phonebook in a formatted table.
+ *
+ * If there are no contacts, it prints a message indicating that no contacts
+ * have been saved.
+ *
+ * @param	phonebook	PhoneBook object to display
+ * @return	0 if no contacts are available, 1 otherwise
+ */
 static int	displayPhonebook(PhoneBook *phonebook)
 {
 	if (phonebook->getCountactsCount() == 0)
@@ -132,6 +176,12 @@ static int	displayPhonebook(PhoneBook *phonebook)
 	return (1);
 }
 
+/**
+ * @brief	Prints the details of a found contact entry after the SEARCH has
+ * been run.
+ *
+ * @param	contact	contact object to be displayed
+ */
 static void	printFoundEntry(Contact contact)
 {
 	std::cout << "First name: " << contact.getFirstName() << '\n';
@@ -141,6 +191,15 @@ static void	printFoundEntry(Contact contact)
 	std::cout << "Darkest Secret: " << contact.getDarkestSecret() << '\n';
 }
 
+/**
+ * @brief	Searches for a contact in the phonebook and displays its details.
+ *
+ * Prompts the user to enter the index of the entry to display. If the index
+ * is invalid or exceeds the available contacts, a corresponding error message
+ * is displayed - different for when the index is actually invalid (i.e. not
+ * a number or index > 8) and when there are not yet enough contacts saved
+ * in the phonebok (index < 8)
+ */
 void	PhoneBook::search(void) const
 {
 	std::string	input;

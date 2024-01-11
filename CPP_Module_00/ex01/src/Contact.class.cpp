@@ -6,24 +6,38 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:48:34 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/09 14:54:05 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/11 14:39:54 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/Contact.class.hpp"
 
-/* Constructor */
+/**
+ * @brief	Constructor.
+*/
 Contact::Contact(void)
 {
 	return ;
 }
 
-/* Destructor */
+/**
+ * @brief	Destructor.
+*/
 Contact::~Contact(void)
 {
 	return ;
 }
 
+/**
+ * @brief	Gets a value for a member attibute of a new Contact object from
+ * the standard input.
+ *
+ * A saved contact can't have empty fields, so the user is repeatedly prompted
+ * until there is an input to return.
+ *
+ * @param	var_name	member attribute to get the input for
+ * @return	std::string	value to set to the member attribute
+*/
 static std::string	setValue(std::string var_name)
 {
 	std::string	input;
