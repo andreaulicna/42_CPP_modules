@@ -2,15 +2,6 @@
 
 ## CPP_Module_00
 
-### ex01
-
-#### Testing
-- Input:
-    - what happens when Enter is pressed?
-    - what does Ctrl + C or Ctrl + D do?
-- 
-
-
 ### ex02
 
 #### Testing

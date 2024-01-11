@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:05:14 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/09 22:11:15 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/11 14:04:04 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,9 @@ static int	displayPhonebook(PhoneBook *phonebook)
 			<< "have been saved yet." << std::endl;
 			return (0);
 	}
-	std::cout << "+============================================+\n";
+	std::cout << "+===========================================+\n";
 	std::cout << "|     Index|First Name| Last Name|  Nickname|\n";
-	std::cout << "+============================================+\n";
+	std::cout << "+===========================================+\n";
 
 	for (int i = 0; i < phonebook->getCountactsCount(); i++)
 	{
@@ -126,8 +126,9 @@ static int	displayPhonebook(PhoneBook *phonebook)
 		printColumnOfPhonebook(phonebook->getContact(i).getFirstName());
 		printColumnOfPhonebook(phonebook->getContact(i).getLastName());
 		printColumnOfPhonebook(phonebook->getContact(i).getNickname());
+		std::cout << '\n';
 	}
-	std::cout << "\n|----------|----------|----------|----------|" << std::endl;
+	std::cout << "|----------|----------|----------|----------|" << std::endl;
 	return (1);
 }
 
