@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ref1.cpp                                           :+:      :+:    :+:   */
+/*   fstream1.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 12:24:32 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/12 18:13:02 by aulicna          ###   ########.fr       */
+/*   Created: 2024/01/13 10:54:25 by aulicna           #+#    #+#             */
+/*   Updated: 2024/01/13 10:58:44 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <fstream>
 
 int	main()
 {
-	int	numberOfBalls = 42;
+	// ifstream - input filestream
+	std::ifstream	ifs("numbers");
+	unsigned int	dst;
+	unsigned int	dst2;
+	ifs >> dst >> dst2;
 
-	int*	ballsPtr = &numberOfBalls;
-	int&	ballsRef = numberOfBalls;
+	std::cout << dst << " " << dst2 << std::endl;
+	ifs.close();
 
-	std::cout << numberOfBalls << " " << *ballsPtr << " " << ballsRef
-		<< std::endl;
+	//--------------------
 
-	*ballsPtr = 21;
-	std::cout << numberOfBalls << std::endl;
-	ballsRef = 84;
-	std::cout << numberOfBalls << std::endl;
+	// ofstream - output filestream
+	std::ofstream	ofs("test.out");
+
+	ofs << "i like ponies a whole damn lot" << std::endl;
+	ofs.close();
 	return (0);
 }
