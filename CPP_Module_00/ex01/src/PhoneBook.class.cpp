@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:05:14 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/11 14:38:55 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/13 11:33:24 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	PhoneBook::getCountactsCount(void) const
 	return (this->_contactsCount);
 }
 
-// Other methods
+// Other methods and helper functions
 /**
  * @brief	Asks the user whether the oldest contact should be overwritten when
  * the phonebook is full.

@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 16:04:12 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/13 11:31:28 by aulicna          ###   ########.fr       */
+/*   Created: 2024/01/13 11:13:32 by aulicna           #+#    #+#             */
+/*   Updated: 2024/01/13 11:50:06 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#ifndef ZOMBIE_H
+# define ZOMBIE_H
 
-# include <string.h>
-# include <iomanip>
 # include <iostream>
-# include "Contact.class.hpp"
 
-class PhoneBook
+class Zombie
 {
 public:
 	/* Constructor */
-	PhoneBook(void);
+	Zombie(std::string name);
 	/* Destructor */
-	~PhoneBook(void);
+	~Zombie();
 
-	// Getters
-	Contact	getContact(int index) const;
-	int		getCountactsCount() const;
-
-	// Other methods
-	void	add(void);	
-	void	search() const;
+	void	announce(void);
 
 private:
-	Contact	_contacts[8];
-	int		_contactsCount;
+	std::string	_name;
 };
+
+Zombie	*newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif
