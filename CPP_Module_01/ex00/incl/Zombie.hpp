@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 11:13:32 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/13 11:50:06 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/13 12:32:34 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 	Zombie(std::string name);
 	/* Destructor */
 	~Zombie();
-
+	// Other methods
 	void	announce(void);
 
 private:

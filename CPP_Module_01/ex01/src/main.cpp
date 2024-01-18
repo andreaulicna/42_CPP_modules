@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/13 11:32:51 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/13 12:11:42 by aulicna          ###   ########.fr       */
+/*   Created: 2024/01/13 11:34:29 by aulicna           #+#    #+#             */
+/*   Updated: 2024/01/13 12:59:08 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/Zombie.hpp"
 
-/**
- * @brief	Creates a zombie on the stack, names it and the zombie announces
- * itself.
- * 
- * Once the control of the program is return to the function that called this
- * one, the Zombie destructor is called.
- * 
- * @param	name	name to assign to the zombie
-*/
-void	randomChump(std::string name)
+int	main(void)
 {
-	Zombie	randomChump = Zombie(name);
+	Zombie	*hitchhikers;
+	int		N;
 
-	randomChump.announce();
+	N = 3;
+	hitchhikers = zombieHorde(N, "Prefect");	
+	delete [] hitchhikers;
+	return (0);
 }

@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   HumanA.class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/13 11:32:51 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/13 12:11:42 by aulicna          ###   ########.fr       */
+/*   Created: 2024/01/18 19:31:36 by aulicna           #+#    #+#             */
+/*   Updated: 2024/01/18 20:20:54 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/Zombie.hpp"
+#include "../incl/HumanA.class.hpp"
+#include <iostream>
 
-/**
- * @brief	Creates a zombie on the stack, names it and the zombie announces
- * itself.
- * 
- * Once the control of the program is return to the function that called this
- * one, the Zombie destructor is called.
- * 
- * @param	name	name to assign to the zombie
-*/
-void	randomChump(std::string name)
+HumanA::HumanA(std::string name, Weapon &weapon): _name(name), _weapon(weapon)
 {
-	Zombie	randomChump = Zombie(name);
+	std::cout << "HumanA created." << std::endl;
+	return ;
+}
 
-	randomChump.announce();
+HumanA::~HumanA()
+{
+	std::cout << "HumanA destroyed." << std::endl;
+	return ;
+}
+
+void	HumanA::attack(void) const
+{
+	std::cout << this->_name << " attacks with their "
+		<< this->_weapon.getType() << std::endl;
 }

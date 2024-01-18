@@ -5,16 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/07 13:51:37 by aulicna           #+#    #+#              #
-#    Updated: 2024/01/13 12:20:47 by aulicna          ###   ########.fr        #
+#    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
+#    Updated: 2024/01/18 20:17:38 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = violence
 
-SRC = src/main.cpp \
-	src/Contact.class.cpp \
-	src/PhoneBook.class.cpp
+SRC = main.cpp \
+	src/Weapon.class.cpp \
+	src/HumanA.class.cpp \
+	src/HumanB.class.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -25,7 +26,7 @@ CPP = c++
 RM = rm -f
 
 all: $(NAME)
-	@echo "phonebook executable ready ✅"
+	@echo "brain executable ready ✅"
 
 $(NAME): $(OBJ)
 	$(CPP) $(CFLAGS) -o $@ $^

@@ -5,16 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/07 13:51:37 by aulicna           #+#    #+#              #
-#    Updated: 2024/01/13 12:20:47 by aulicna          ###   ########.fr        #
+#    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
+#    Updated: 2024/01/18 18:07:09 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = brain
 
-SRC = src/main.cpp \
-	src/Contact.class.cpp \
-	src/PhoneBook.class.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -25,7 +23,7 @@ CPP = c++
 RM = rm -f
 
 all: $(NAME)
-	@echo "phonebook executable ready ✅"
+	@echo "brain executable ready ✅"
 
 $(NAME): $(OBJ)
 	$(CPP) $(CFLAGS) -o $@ $^

@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 11:17:49 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/13 12:10:51 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/13 12:59:12 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include <iostream>
 
 /* Constructor */
+Zombie::Zombie(void)
+{
+	std::cout << "A zombie just woke up from 1000 years of sleep." << std::endl;
+}
 Zombie::Zombie(std::string name): _name(name)
 {
 	std::cout << this->_name << " just woke up after 1000 years of sleep."
@@ -25,6 +29,11 @@ Zombie::~Zombie()
 {
 	std::cout << this->_name
 		<< " has done enough damaged and went back to sleep." << std::endl;
+}
+
+void	Zombie::setName(std::string name)
+{
+	this->_name = name;
 }
 
 /**

@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   Weapon.class.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/13 11:32:51 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/13 12:11:42 by aulicna          ###   ########.fr       */
+/*   Created: 2024/01/18 18:29:21 by aulicna           #+#    #+#             */
+/*   Updated: 2024/01/18 20:56:51 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/Zombie.hpp"
+#ifndef WEAPON_CLASS_HPP
+# define WEAPON_CLASS_HPP
 
-/**
- * @brief	Creates a zombie on the stack, names it and the zombie announces
- * itself.
- * 
- * Once the control of the program is return to the function that called this
- * one, the Zombie destructor is called.
- * 
- * @param	name	name to assign to the zombie
-*/
-void	randomChump(std::string name)
+# include <string>
+
+class Weapon
 {
-	Zombie	randomChump = Zombie(name);
+public:
+	/* Constructor */
+	Weapon(void);
+	Weapon(std::string type);
+	/* Destructor */
+	~Weapon(void);
 
-	randomChump.announce();
-}
+	// Getters
+	std::string const	&getType(void) const;
+
+	// Setters
+	void				setType(std::string newType);
+
+private:
+	std::string	_type;
+};
+
+#endif
