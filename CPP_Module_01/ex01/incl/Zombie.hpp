@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 11:13:32 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/18 20:57:17 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/19 20:38:24 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
 	void	setName(std::string name);
 	
 	// Other member functions
-	void	announce(void);
+	void	announce(void) const;
 
 private:
 	std::string	_name;

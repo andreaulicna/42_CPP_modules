@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 11:17:49 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/13 12:59:12 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/19 20:38:16 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	Zombie::setName(std::string name)
 /**
  * @brief	Prints a message formated as [name]: BraiiiiiiinnnzzzZ...
 */
-void	Zombie::announce(void)
+void	Zombie::announce(void) const
 {
 	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
