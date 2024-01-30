@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:43:30 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/20 15:25:39 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/30 23:38:26 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstring>
 #include <sstream>
 
 /**
@@ -78,7 +79,7 @@ int	copyContentIntoReplace(std::ofstream &ofs, std::string originalContent,
 		}
 		else
 		{
-			originalContent.substr(i, std::string::npos);
+			ofs << originalContent.substr(i, std::string::npos);
 			break ;
 		}
 	}
@@ -94,6 +95,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 4)
 		return (wrongParameters());
+		
 	ifs.open(argv[1]);
 	if (!ifs.is_open())
 		return (errorOpenFile("Input"));
@@ -103,7 +105,10 @@ int	main(int argc, char **argv)
 	ofs.open(std::string(argv[1]) + ".replace");
 	if (!ofs.is_open())
 		return (errorOpenFile("Output"));
-	copyContentIntoReplace(ofs, originalContent, argv[2], argv[3]);
+	if (strlen(argv[2]) == 0)
+		ofs << originalContent;
+	else
+		copyContentIntoReplace(ofs, originalContent, argv[2], argv[3]);
 	ofs.close();
 	return (0);
 }
