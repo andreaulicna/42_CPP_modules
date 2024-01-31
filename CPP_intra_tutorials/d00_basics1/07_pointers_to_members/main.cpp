@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 13:17:30 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/07 13:30:12 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/31 14:37:13 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(void)
 
 	// syntax of a pointer on a member attribute (int type) of the Sample class
 	int		Sample::*p = NULL;
-	// point on a member function of the Sample class
+	// pointer on a member function of the Sample class
 	void	(Sample::*f)(void) const;
 
 	// assign the address of foo to pointer p, but not for a specific instance

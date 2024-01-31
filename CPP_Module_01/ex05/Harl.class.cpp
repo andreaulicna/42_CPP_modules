@@ -6,12 +6,13 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 23:48:25 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/30 23:58:15 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/31 17:27:00 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.class.hpp"
 #include <iostream>
+#include <cctype>
 
 Harl::Harl(void)
 {
@@ -25,7 +26,21 @@ Harl::~Harl(void)
 
 void	Harl::complain(std::string level) const
 {
+	void	(Harl::*functionPtrs[])(void) const = {&Harl::_debug, &Harl::_info,
+		&Harl::_warning, &Harl::_error};
+	std::string	levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
+	for (int i = 0; level[i] != '\0'; i++)
+		level[i] = (char)toupper(level[i]);
+	for (int i = 0; i < 4; i++)
+	{
+		if (level == levels[i])
+		{
+			(this->*functionPtrs[i])();
+			return ;
+		}
+	}
+	std::cout << "Error: Invalid level." << std::endl;
 }
 
 void	Harl::_debug(void) const
@@ -33,7 +48,6 @@ void	Harl::_debug(void) const
 	std::cout << "I love having extra bacon for my "
 		"7XL-double-cheese-triple-pickle-specialketchup burger. I really do!"
 		<< std::endl;
-
 }
 
 void	Harl::_info(void) const
