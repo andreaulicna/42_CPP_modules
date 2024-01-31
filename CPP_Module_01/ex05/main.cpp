@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:39:40 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/31 17:27:19 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/31 18:03:13 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int	main(void)
 	harl.complain("Warning");
 	harl.complain("eRRor");
 	harl.complain("HAHA");
+	harl.complain("DEBUGno");
 	return (0);
 }

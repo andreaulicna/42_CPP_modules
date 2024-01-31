@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 23:47:25 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/31 14:35:21 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/01/31 18:02:48 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ private:
 	void	_info(void) const;
 	void	_warning(void) const;
 	void	_error(void) const;
-
 };
 
 #endif
