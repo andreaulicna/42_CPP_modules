@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:39:40 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/01 12:54:21 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/01 12:10:14 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 bool	chooseComplains(Harl harl)
 {
 	std::string	inputLevel;
-	std::cout << "___Harl's complains that you asked for (5 inputs)___\n";
+	std::cout << "___Harl's complains that you asked for (5 inputs)___\n\n";
 	for (int i = 0; i < 6; i++)
 	{
 		std::cout << "Enter a level: ";
@@ -28,28 +28,21 @@ bool	chooseComplains(Harl harl)
 			return(EXIT_FAILURE);
 		}
 		harl.complain(inputLevel);
+		std::cout << '\n';
 	}
 	return (EXIT_SUCCESS);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	Harl		harl;
-	std::string	levels1[] = {"DEBUG", "INFO", "WARNING", "ERROR", "INVALID"};
-	std::string	levels2[] = {"debug", "info", "Warning", "eRRor", "Haha"};
+	std::string	levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	std::string	limit;
+	int			stop;
 
-	std::cout << "___Harl's complains by LEVEL (all uppercase)___\n";
-	for (int i = 0; i < 5; i++)
-	{
-		harl.complain(levels1[i]);
-	}
-	std::cout << "___Harl's complains by level (lower and uppercase)___\n";
-	for (int i = 0; i < 5; i++)
-	{
-		harl.complain(levels2[i]);
-	}
-	if (chooseComplains(harl))
-		return(EXIT_FAILURE);
-	std::cout << "Exit: Enough complaining for today." << std::endl;
+	if (argc == 2)
+		harl.complain(argv[1]);
+	else
+		harl.complain("INVALID");
 	return (EXIT_SUCCESS);
 }

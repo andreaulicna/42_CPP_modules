@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 23:48:25 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/01 12:51:36 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/01 12:49:24 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,44 @@ Harl::~Harl(void)
 	return ;
 }
 
+static int	getSeverity(std::string level, std::string levels[])
+{
+	int			severity;
+
+	severity = 0;
+	for (; severity < 4; severity++)
+	{
+		if (level == levels[severity])
+			break ;
+	}
+	return (severity);
+}
+
 void	Harl::complain(std::string level) const
 {
-	void	(Harl::*functionPtrs[])(void) const = {&Harl::_debug, &Harl::_info,
-		&Harl::_warning, &Harl::_error};
+	void		(Harl::*functionPtrs[])(void) const = {&Harl::_debug,
+		&Harl::_info, &Harl::_warning, &Harl::_error};
 	std::string	levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int			severity;
 
 	for (int i = 0; level[i] != '\0'; i++)
 		level[i] = (char)toupper(level[i]);
-	for (int i = 0; i < 4; i++)
+	severity = getSeverity(level, levels);
+	switch (severity)
 	{
-		if (level == levels[i])
-		{
-			(this->*functionPtrs[i])();
-			return ;
-		}
+		case 0:
+			(this->*functionPtrs[0])();
+		case 1:
+			(this->*functionPtrs[1])();
+		case 2:
+			(this->*functionPtrs[2])();
+		case 3:
+			(this->*functionPtrs[3])();
+			break ;
+		default:
+			std::cout << "[INVALID]\n"
+			"Probably complaining about insignificant problems." << std::endl;
 	}
-	std::cout << "[INVALID]\n"
-		"Probably complaining about insignificant problems.\n" << std::endl;
 }
 
 void	Harl::_debug(void) const
