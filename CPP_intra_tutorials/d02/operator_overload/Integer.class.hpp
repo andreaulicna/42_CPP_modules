@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.class.hpp                                    :+:      :+:    :+:   */
+/*   Integer.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 12:29:40 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/10 19:26:15 by aulicna          ###   ########.fr       */
+/*   Created: 2024/02/10 14:51:53 by aulicna           #+#    #+#             */
+/*   Updated: 2024/02/10 15:17:28 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_CLASS_HPP
-# define FIXED_CLASS_HPP
+#ifndef INTEGER_CLASS_H
+# define INTEGER_CLASS_H
 
-class Fixed
+# include <iostream>
+
+class Integer
 {
 public:
-	// Constructor
-	Fixed(void);
-	// Copy constructor
-	Fixed(const Fixed& copy);
-	// Destructor
-	~Fixed(void);
+	Integer(int const n);
+	~Integer(void);
 
-	// Copy assignment operator overload
-	Fixed	&operator=(const Fixed &src);
-	// Getter
-	int		getRawBits(void) const;
-	// Setter
-	void	setRawBits(int const raw);
+	int	getValue(void) const;
+
+	Integer &operator=(Integer const &rhs);
+	Integer operator+(Integer const &rhs) const;
 
 private:
-	int					_fixPointNumber;
-	static const int	_FRACTIONAL_BITS;
+	int	_n;
 };
+
+std::ostream &operator<<(std::ostream &o, Integer const &rhs);
 
 #endif
