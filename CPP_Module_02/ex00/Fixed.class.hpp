@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.class.hpp                                     :+:      :+:    :+:   */
+/*   Fixed.class.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 23:47:25 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/10 12:38:57 by aulicna          ###   ########.fr       */
+/*   Created: 2024/02/10 12:29:40 by aulicna           #+#    #+#             */
+/*   Updated: 2024/02/10 13:01:14 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_CLASS_HPP
-# define HARL_CLASS_HPP
+#ifndef FIXED_CLASS_HPP
+# define FIXED_CLASS_HPP
 
-# include <iostream>
-
-class Harl
+class Fixed
 {
 public:
-	Harl(void);
-	~Harl(void);
+	// Constructor
+	Fixed(void);
+	// Copy constructor
+	Fixed(const Fixed& copy);
+	// Destructor
+	~Fixed(void);
 
-	void	complain(std::string level) const;
-	
+	// Copy assignment operator overload
+	Fixed	&operator=(const Fixed &src);
+	// Getter
+	int		getRawBits(void) const;
+	// Setter
+	void	setRawBits(int const raw);
+
 private:
-	void	_debug(void) const;
-	void	_info(void) const;
-	void	_warning(void) const;
-	void	_error(void) const;
+	int					_fixPointNumber;
+	static const int	_fractionalBits;
 };
-
 #endif
