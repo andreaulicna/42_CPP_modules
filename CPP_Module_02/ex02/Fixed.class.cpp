@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:30:12 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/11 11:05:44 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:51:52 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ const int	Fixed::_FRACTIONAL_BITS = 8;
 
 Fixed::Fixed(void): _fixPointNumber(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	//std::cout << "Default constructor called" << std::endl;
 }
 
 /**
@@ -30,10 +30,13 @@ Fixed::Fixed(void): _fixPointNumber(0)
  * value << _FRACTIONAL_BITS shifts value to the left by _FRACTIONAL_BITS bits.
  * This effectively multiplies value by 2^_FRACTIONAL_BITS, converting
  * the integer to a fixed point number.
+ * 
+ * @param	value	int to convert to a fixed-point numberand assign
+ * 					to the new Fixed instance
 */
 Fixed::Fixed(const int value)
 {
-	std::cout << "Int constructor called" << std::endl;
+	//std::cout << "Int constructor called" << std::endl;
 	this->_fixPointNumber = value << this->_FRACTIONAL_BITS;
 }
 
@@ -50,10 +53,13 @@ Fixed::Fixed(const int value)
  * used to multiply the floating-point value. The number 1 is being shifted
  * by _FRACTIONAL_BITS to create a multiplier for the floating-point value.
  * The roundf function is used to round to the nearest integer.
+ * 
+ * @param	value	float to convert to a fixed-point numberand assign
+ * 					to the new Fixed instance
 */
 Fixed::Fixed(const float value)
 {
-	std::cout << "Float constructor called" << std::endl;
+	//std::cout << "Float constructor called" << std::endl;
 	this->_fixPointNumber = roundf(value * (1 << this->_FRACTIONAL_BITS));
 }
 
@@ -65,11 +71,31 @@ Fixed::Fixed(const float value)
  * Used for initialization where Fixed f2(f1) will call the copy constructor,
  * which will copy the value of f1's _fixPointNumber member
  * to f2's _fixPointNumber member.
+ * 
+ * @param	src		constant reference to a Fixed instance to copy
 */
-Fixed::Fixed(const Fixed& copy)
+Fixed::Fixed(const Fixed &copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	//std::cout << "Copy constructor called" << std::endl;
 	*this = copy;
+}
+
+Fixed::~Fixed(void)
+{
+//	std::cout << "Destructor called" << std::endl;
+}
+
+// Getter
+int	Fixed::getRawBits(void) const
+{
+//	std::cout << "getRawBits member function called" << std::endl;
+	return (this->_fixPointNumber);
+}
+
+// Setter
+void	Fixed::setRawBits(int const raw)
+{
+	this->_fixPointNumber = raw;
 }
 
 /** 
@@ -89,12 +115,12 @@ Fixed::Fixed(const Fixed& copy)
  * to f1's _fixPointNumber member.
  * 
  * @param	src		constant reference to a Fixed instance
- * @return	&Fixed	reference to the current instance (allow for chaining
+ * @return	&Fixed	reference to the current instance (allows for chaining
  * 					of assignment operations)
 */
 Fixed	&Fixed::operator = (const Fixed &src)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	//std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &src)
 		this->_fixPointNumber = src.getRawBits();
 	return *this;
@@ -164,22 +190,180 @@ Fixed	Fixed::operator / (const Fixed &fixed) const
 	return (toReturn);
 }
 
-Fixed::~Fixed(void)
+/**
+ * @brief	Overloads the pre-increment operator (++) for the Fixed class.
+ * 
+ * This function increments the fixed-point number stored in the object by 1.
+ * The increment is done in the fixed-point representation, so it effectively
+ * increments the number by the smallest representable positive number
+ * in the fixed-point format.
+ * 
+ * @return	Fixed&	reference to the Fixed object after it has been incremented
+ * 					(allows for chaining of increment operations)
+ */
+Fixed	&Fixed::operator ++ (void)
 {
-	std::cout << "Destructor called" << std::endl;
+	++(this->_fixPointNumber);
+	return *this;
 }
 
-// Getter
-int	Fixed::getRawBits(void) const
+/**
+ * @brief	Overloads the post-increment operator (++) for the Fixed class.
+ * 
+ * This function creates a copy of the current object, increments
+ * the fixed-point number stored in the current object by 1, and then returns
+ * the copy. The increment is done in the fixed-point representation, so it
+ * effectively increments the number by the smallest  representable positive
+ * number in the fixed-point format.
+ * 
+ * @param	int		is an unused parameter used to differentiate this postfix
+ * 					operator from the prefix version
+ * @return	Fixed	copy of the Fixed object before it was incremented
+ */
+Fixed	Fixed::operator ++ (int dummy)
 {
-//	std::cout << "getRawBits member function called" << std::endl;
-	return (this->_fixPointNumber);
+	Fixed	toReturn;
+
+	toReturn = *this;
+	this->_fixPointNumber++;
+	return (toReturn);
 }
 
-// Setter
-void	Fixed::setRawBits(int const raw)
+/**
+ * @brief	Overloads the pre-decrement operator (--) for the Fixed class.
+ * 
+ * This function decrements the fixed-point number stored in the object by 1.
+ * The decrement is done in the fixed-point representation, so it effectively
+ * decrements the number by the smallest representable positive number
+ * in the fixed-point format.
+ * 
+ * @return	Fixed&	reference to the Fixed object after it has been decremented
+ * 					(allows for chaining of decrement operations)
+ */
+Fixed	&Fixed::operator -- (void)
 {
-	this->_fixPointNumber = raw;
+	--(this->_fixPointNumber);
+	return *this;
+}
+
+/**
+ * @brief	Overloads the post-decrement operator (--) for the Fixed class.
+ * 
+ * This function creates a copy of the current object, decrements
+ * the fixed-point number stored in the current object by 1, and then returns
+ * the copy. The decrement is done in the fixed-point representation, so it
+ * effectively decrements the number by the smallest  representable positive
+ * number in the fixed-point format.
+ * 
+ * @param	int		is an unused parameter used to differentiate this postfix
+ * 					operator from the prefix version
+ * @return	Fixed	copy of the Fixed object before it was decremented
+ */
+Fixed	Fixed::operator -- (int dummy)
+{
+	Fixed	toReturn;
+
+	toReturn = *this;
+	this->_fixPointNumber--;
+	return (toReturn);
+}
+
+/**
+ * @brief	Returns a reference (the object can be edited by the caller)
+ * to the minimum of two Fixed objects.
+ * 
+ * This function compares the fixed-point numbers stored in two Fixed objects
+ * and returns a reference to the object with the smaller number. The comparison
+ * is done in the fixed-point representation.
+ * 
+ * When returning a reference, the caller can modify such a returned object. It
+ * is useful when we want the function to provide direct access to an object
+ * that it manages.
+ * 
+ * @param	A		reference to the first Fixed object
+ * @param	b		reference to the second Fixed object
+ * @return	Fixed&	reference to the Fixed object with the smaller fixed-point
+ * 					number
+ */
+Fixed	&Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a.getRawBits() <= b.getRawBits())
+		return (a);
+	return (b);
+}
+
+/**
+ * @brief	Returns a reference (the object can be edited by the caller)
+ * to the maximum of two Fixed objects.
+ * 
+ * This function compares the fixed-point numbers stored in two Fixed objects
+ * and returns a reference to the object with the greater number. The comparison
+ * is done in the fixed-point representation.
+ * 
+ * When returning a reference, the caller can modify such a returned object. It
+ * is useful when we want the function to provide direct access to an object
+ * that it manages.
+ * 
+ * @param	A		reference to the first Fixed object
+ * @param	b		reference to the second Fixed object
+ * @return	Fixed&	reference to the Fixed object with the greater fixed-point
+ * 					number
+ */
+Fixed	&Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a.getRawBits() >= b.getRawBits())
+		return (a);
+	return (b);
+}
+
+/**
+ * @brief	Returns a constant reference (the object is read-only
+ * for the caller) to the minimum of two Fixed objects.
+ * 
+ * This function compares the fixed-point numbers stored in two Fixed objects
+ * and returns a reference to the object with the smaller number. The comparison
+ * is done in the fixed-point representation.
+ * 
+ * Returning a constant reference to the object, prevents the caller
+ * from modifying the returned object. The caller can use the object and call
+ * const methods on it, but cannot change it. This is useful when we want
+ * the function to provide read-only access to an object.
+ * 
+ * @param	A		const reference to the first Fixed object
+ * @param	b		const reference to the second Fixed object
+ * @return	Fixed&	const reference to the Fixed object with the smaller
+ * 					fixed-point	number
+ */
+const Fixed	&Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a.getRawBits() <= b.getRawBits())
+		return (a);
+	return (b);
+}
+
+/**
+ * @brief	 Returns a constant reference (the object is read-only
+ * for the caller) to the maximum of two Fixed objects.
+ * 
+ * This function compares the fixed-point numbers stored in two Fixed objects
+ * and returns a reference to the object with the greater number. The comparison
+ * is done in the fixed-point representation.
+ * 
+ * Returning a constant reference to the object, prevents the caller
+ * from modifying the returned object. The caller can use the object and call
+ * const methods on it, but cannot change it. This is useful when we want
+ * the function to provide read-only access to an object.
+ * 
+ * @param	A		const reference to the first Fixed object
+ * @param	b		const reference to the second Fixed object
+ * @return	Fixed&	const reference to the Fixed object with the greater
+ * 					fixed-point	number
+ */
+const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a.getRawBits() >= b.getRawBits())
+		return (a);
+	return (b);
 }
 
 /**
@@ -232,7 +416,7 @@ int	Fixed::toInt(void) const
  * 							instance will be output to	
  * @param	instance		constant reference to the Fixed instance that will
  * 							be outpu			
- * @return	std::ostream	stream object (allow for chaining of << operations)
+ * @return	std::ostream	stream object (allows for chaining of << operations)
 */
 std::ostream &operator<<(std::ostream &o, Fixed const &instance)
 {

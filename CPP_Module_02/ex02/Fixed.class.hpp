@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:29:40 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/11 11:05:47 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:16:34 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,14 @@ public:
 	Fixed(const int value);
 	Fixed(const float value);
 	// Copy constructor
-	Fixed(const Fixed& copy);
+	Fixed(const Fixed &copy);
 	// Destructor
 	~Fixed(void);
+
+	// Getter
+	int		getRawBits(void) const;
+	// Setter
+	void	setRawBits(int const raw);
 
 	// Copy assignment operator overload
 	Fixed	&operator = (const Fixed &src);
@@ -37,15 +42,21 @@ public:
 	bool	operator <= (const Fixed &fixed) const;
 	bool	operator == (const Fixed &fixed) const;
 	bool	operator != (const Fixed &fixed) const;
-	// Arithmetic operators
+	// Arithmetic operators overloads
 	Fixed	operator + (const Fixed &fixed) const;
 	Fixed	operator - (const Fixed &fixed) const;
 	Fixed	operator * (const Fixed &fixed) const;
 	Fixed	operator / (const Fixed &fixed) const;
-	// Getter
-	int		getRawBits(void) const;
-	// Setter
-	void	setRawBits(int const raw);
+	// Increment & decrement operators overloads
+	Fixed	&operator ++ (void);
+	Fixed	operator ++ (int dummy);
+	Fixed	&operator -- (void);
+	Fixed	operator -- (int dummy);
+	// Other member functions overloads
+	static Fixed	&min(Fixed &a, Fixed &b);
+	static Fixed	&max(Fixed &a, Fixed &b);
+	static const Fixed	&min(const Fixed &a, const Fixed &b);
+	static const Fixed	&max(const Fixed &a, const Fixed &b);
 	// Other member functions
 	float	toFloat(void) const;
 	int		toInt(void) const;

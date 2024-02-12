@@ -6,7 +6,7 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
-#    Updated: 2024/01/18 20:17:38 by aulicna          ###   ########.fr        #
+#    Updated: 2024/02/12 17:56:41 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CPP = c++
 RM = rm -f
 
 all: $(NAME)
-	@echo "brain executable ready ✅"
+	@echo "violence executable ready ✅"
 
 $(NAME): $(OBJ)
 	$(CPP) $(CFLAGS) -o $@ $^
