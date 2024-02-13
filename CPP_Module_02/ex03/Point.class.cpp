@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 12:16:09 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/13 13:02:13 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:43:14 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Point::Point(void): _x(0), _y(0)
 {
-	std::cout << "Default constructor called." << std::endl;
+//	std::cout << "Default constructor called." << std::endl;
 }
 
 /**
@@ -25,7 +25,7 @@ Point::Point(void): _x(0), _y(0)
 */
 Point::Point(const float a, const float b): _x(a), _y(b)
 {
-	std::cout << "Float constructor called." << std::endl;
+//	std::cout << "Float constructor called." << std::endl;
 }
 
 /**
@@ -41,13 +41,13 @@ Point::Point(const float a, const float b): _x(a), _y(b)
 */
 Point::Point(const Point &copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
+//	std::cout << "Copy constructor called" << std::endl;
 	*this = copy;
 }
 
 Point::~Point()
 {
-	std::cout << "Destructor called." << std::endl;
+//	std::cout << "Destructor called." << std::endl;
 }
 
 /** 
@@ -72,22 +72,19 @@ Point::~Point()
 */
 Point	&Point::operator = (const Point &src)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &src)
-	{
-		this->_x = src.getX();
-		this->_y = src.getY();
-	}
+//	std::cout << "Copy assignment operator called" << std::endl;
+	if (this == &src)
+		return (*this);
 	return (*this);
 }
 
 // Getters
 const Fixed	&Point::getX(void) const
 {
-	return (*this->_x);
+	return (this->_x);
 }
 
 const Fixed	&Point::getY(void) const
 {
-	return (*this->_y);
+	return (this->_y);
 }

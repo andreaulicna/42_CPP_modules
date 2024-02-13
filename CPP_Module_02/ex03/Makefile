@@ -6,16 +6,19 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
-#    Updated: 2024/02/13 12:14:41 by aulicna          ###   ########.fr        #
+#    Updated: 2024/02/13 14:23:57 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = bsp
 
 SRC = main.cpp \
-	Fixed.class.cpp
+	bsp.cpp \
+	Fixed.class.cpp \
+	Point.class.cpp
 
-HEADER = Fixed.class.hpp
+HEADER = Fixed.class.hpp \
+		Point.class.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
