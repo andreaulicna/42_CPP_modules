@@ -44,9 +44,12 @@ bash compare_logs_cleanup.sh
 
 ## CPP_Module_02
 
-### ex02
+### Theory
 
-#### Theory
+##### Copy constructor vs copy assignment operator
+- Copy constructor: Used for initialization as it creates a new class instance that is a copy of an existing class instance.
+- Copy assignment operator: Used for assignment as it assigns the value of one (already existing) class instance to another.
+- Regardless of which one is used, obj1 ends up as a copy of obj2, but the difference is in whether obj1 is a new object (copy constructor) or an existing object (copy assignment operator).
 
 ##### Static member functions
 ```static``` in a member function declaration means that the function is associated with the class, not any particular instance of the class. This means that the function can be called without creating an instance of the class.
