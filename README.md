@@ -60,6 +60,6 @@ The choice of returning a reference versus a const reference from a function dep
 
 - Returning a const reference (const Fixed &): This prevents the caller from modifying the returned object. The caller can use the object and call const methods on it, but cannot change it. This is useful when we want the function to provide read-only access to an object.
 
-#### Operator precedence
+##### Operator precedence
 - The ```<<``` operator (stream insertion operator) has higher precedence than comparison operators like ```>, <, >=, <=,``` and ```!=```. This mean that went chaining the printing of an output, without the brackets, the << operator would be evaluated first, leading to incorrect results or compilation errors.
 - On the other hand, arithmetic operators like ```+``` have higher precedence than the ```<<``` operator, so they are evaluated first even without brackets.
