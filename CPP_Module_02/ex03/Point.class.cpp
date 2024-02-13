@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 12:16:09 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/13 14:43:14 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/13 16:07:50 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ Point::Point(const float a, const float b): _x(a), _y(b)
  * 
  * @param	copy	constant reference to a Point instance to copy
 */
-Point::Point(const Point &copy)
+Point::Point(const Point &copy): _x(copy.getX()), _y(copy.getY())
 {
 //	std::cout << "Copy constructor called" << std::endl;
-	*this = copy;
 }
 
 Point::~Point()
