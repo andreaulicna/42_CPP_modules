@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 12:16:09 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/13 16:07:50 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/14 12:22:39 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,21 @@ const Fixed	&Point::getX(void) const
 const Fixed	&Point::getY(void) const
 {
 	return (this->_y);
+}
+
+/**
+ * @brief	Overloads the << operator for the Point class.
+ * 
+ * This function allows instances of the Point class to be output using
+ * the << operator. It outputs the point in the format "(x,y)",
+ * where x and y are the coordinates of the point.
+ * 
+ * @param	o				output stream to write to
+ * @param	instance		instance of the Point class to output
+ * @return	std::ostream&	returns the output stream
+ */
+std::ostream &operator<<(std::ostream &o, Point const &instance)
+{
+	o << "(" << instance.getX() << "," << instance.getY() << ")";
+	return (o);
 }

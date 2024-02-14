@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 12:15:09 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/13 15:45:11 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/14 11:25:38 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ private:
 };
 
 bool	bsp(const Point a, const Point b, const Point c, const Point point);
+std::ostream &operator<<(std::ostream &o, Point const &instance);
 
 #endif
