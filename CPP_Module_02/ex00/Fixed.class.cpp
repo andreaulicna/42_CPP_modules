@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:30:12 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/10 20:32:15 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/14 12:39:17 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ Fixed::Fixed(const Fixed& copy)
  * @return	&Fixed	reference to the current instance (allow for chaining
  * 					of assignment operations)
 */
-Fixed &Fixed::operator=(const Fixed &src)
 Fixed &Fixed::operator=(const Fixed &src)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
