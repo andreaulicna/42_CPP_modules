@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:30:12 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/14 13:46:44 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 21:07:46 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ Fixed	Fixed::operator + (const Fixed &fixed) const
 {
 	Fixed	toReturn;
 
-	toReturn = this->toFloat() + fixed.toFloat();
+	toReturn.setRawBits(this->getRawBits() + fixed.getRawBits());
 	return (toReturn);
 }
 
@@ -170,24 +170,56 @@ Fixed	Fixed::operator - (const Fixed &fixed) const
 {
 	Fixed	toReturn;
 
-	toReturn = this->toFloat() - fixed.toFloat();
+	toReturn.setRawBits(this->getRawBits() - fixed.getRawBits());
 	return (toReturn);
 }
-
+/**
+ * @brief	Overloads the '*' operator for the Fixed class. This function
+ * multiplies the raw fixed-point values of two Fixed objects. 
+ * 
+ * The multiplication of two fixed-point numbers results in a number with
+ * twice the number of fractional bits. To maintain the fixed-point format,
+ * the result needs to be adjusted by shifting right by the number
+ * of fractional bits. The multiplication result is cast to 'long long' to
+ * prevent overflow during the multiplication.
+ *
+ * @param	fixed	Fixed object to multiply with the current object
+ * @return	Fixed	new Fixed object that is the product of the current object
+ * 					and the parameter
+ */
 Fixed	Fixed::operator * (const Fixed &fixed) const
 {
-	Fixed	toReturn;
+	Fixed toReturn;
 
-	toReturn = this->toFloat() * fixed.toFloat();
-	return (toReturn);
+	toReturn.setRawBits((long long)this->getRawBits()
+		* (long long)fixed.getRawBits() >> _FRACTIONAL_BITS);
+	return toReturn;
 }
 
-Fixed	Fixed::operator / (const Fixed &fixed) const
+/**
+ * Overloads the '/' operator for the Fixed class. This function divides
+ * the raw fixed-point value of the current object by the raw fixed-point value
+ * of the parameter.
+ * 
+ * When dividing two fixed-point numbers, the precision of the result depends
+ * on the precision of the dividend (the number being divided). To prevent loss
+ * of precision, the dividend is adjusted before performing the division
+ * by shifting left by the number of fractional bits. This effectively
+ * multiplies the dividend by 2^_FRACTIONAL_BITS, compensating for the loss
+ * of precision that would occur in the division. The dividend is cast to
+ * 'long long' before the bit shift operation to prevent overflow.
+ *
+ * @param	fixed	Fixed object to divide the current object by
+ * @return	Fixed	new Fixed object that is the quotient of the current object
+ * 					and the parameter
+ */
+Fixed Fixed::operator / (const Fixed &fixed) const
 {
-	Fixed	toReturn;
+	Fixed toReturn;
 
-	toReturn = this->toFloat() / fixed.toFloat();
-	return (toReturn);
+	toReturn.setRawBits(((long long)this->getRawBits() << _FRACTIONAL_BITS)
+		/ fixed.getRawBits());
+	return toReturn;
 }
 
 /**
