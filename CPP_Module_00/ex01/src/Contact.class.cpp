@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:48:34 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/15 18:00:20 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 20:00:04 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,34 @@ Contact::Contact(void)
 Contact::~Contact(void)
 {
 	return ;
+}
+
+static bool	checkEmptyString(std::string input, std::string::size_type first,
+	std::string var_name)
+{
+	if (input.length() == 0 || first == std::string::npos)
+	{
+		std::cout << "Error: " << (char) toupper(var_name[0]) << &var_name[1]
+			<< " cannot be empty." << '\n';
+		return (true);
+	}
+	return (false);
+}
+
+static bool	checkNonNumeric(std::string var_name, std::string input,
+	std::string::size_type first)
+{
+	if (var_name == "phone number")
+	{
+		first = input.find_first_not_of("0123456789");
+		if (first != std::string::npos)
+		{
+			std::cout << "Error: Phone number must include numeric "
+				"characters only.\n";
+			return (true);
+		}
+	}
+	return (false);
 }
 
 /**
@@ -56,24 +84,12 @@ static std::string	setValue(std::string var_name)
 			std::cout << std::endl;
 			exit(1);
 		}
-		if (input.length() == 0 || first == std::string::npos)
-		{
-			std::cout << "Error: " << (char) toupper(var_name[0]) << &var_name[1]
-				<< " cannot be empty." << '\n';
-			continue;
-		}
+		if (checkEmptyString(input, first, var_name))
+			continue ;
 		if (first != std::string::npos)
 			input = input.substr(first);
-		if (var_name == "phone number")
-		{
-			first = input.find_first_not_of("0123456789");
-			if (first != std::string::npos)
-			{
-				std::cout << "Error: Phone number must include numeric "
-					"characters only.\n";
-				continue;
-			}
-		}
+		if (checkNonNumeric(var_name, input, first))
+			continue ;
 		break;
 	}
 	return (input);

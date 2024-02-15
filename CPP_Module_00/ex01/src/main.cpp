@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:35:16 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/15 17:18:54 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 20:02:20 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ static std::string	enterCommand()
 
 int	main(void)
 {
-	std::string	command;
-	PhoneBook	phonebook;
+	std::string				command;
+	PhoneBook				phonebook;
+	std::string::size_type	first;
 
 	command = enterCommand();
+	first = command.find_first_not_of(" \f\n\r\t\v");
 	while (command != "EXIT")
 	{
 		if (command.length() == 0)
@@ -40,7 +42,9 @@ int	main(void)
 			command = enterCommand();
 			continue ;
 		}
-		else if (command == "ADD")
+		if (first != std::string::npos)
+			command = command.substr(first);
+		if (command == "ADD")
 			phonebook.add();
 		else if (command == "SEARCH")
 			phonebook.search();

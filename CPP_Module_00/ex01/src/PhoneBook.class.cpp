@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:05:14 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/15 18:01:03 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:49:29 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,13 +186,16 @@ static int	displayPhonebook(PhoneBook *phonebook)
  *
  * @param	contact	contact object to be displayed
  */
-static void	printFoundEntry(Contact contact)
+static void	printFoundEntry(Contact contact, int inputNum)
 {
+	std::cout << "Displaying entry #" << inputNum << '\n';
+	std::cout << "-------------------\n";
 	std::cout << "First name: " << contact.getFirstName() << '\n';
 	std::cout << "Last name: " << contact.getLastName() << '\n';
 	std::cout << "Nickname: " << contact.getNickname() << '\n';
 	std::cout << "Phone number: " << contact.getPhoneNumber() << '\n';
 	std::cout << "Darkest Secret: " << contact.getDarkestSecret() << '\n';
+	std::cout << "-------------------" << std::endl;
 }
 
 /**
@@ -249,10 +252,7 @@ void	PhoneBook::search(void) const
 		{
 			if (inputNum == i + 1)
 			{
-				std::cout << "Displaying entry #" << inputNum << '\n';
-				std::cout << "-------------------\n";
-				printFoundEntry(this->_contacts[i]);
-				std::cout << "-------------------" << std::endl;
+				printFoundEntry(this->_contacts[i], inputNum);
 				return ;
 			}
 		}
