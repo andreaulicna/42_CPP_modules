@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:43:30 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/30 23:38:26 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:30:23 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	main(int argc, char **argv)
 	buff << ifs.rdbuf();
 	ifs.close();
 	originalContent = buff.str();
-	ofs.open(std::string(argv[1]) + ".replace");
+	ofs.open((std::string(argv[1]) + ".replace").c_str());
 	if (!ofs.is_open())
 		return (errorOpenFile("Output"));
 	if (strlen(argv[2]) == 0)

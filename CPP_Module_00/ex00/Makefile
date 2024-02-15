@@ -6,7 +6,7 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 13:51:37 by aulicna           #+#    #+#              #
-#    Updated: 2024/01/07 13:57:42 by aulicna          ###   ########.fr        #
+#    Updated: 2024/02/15 14:51:52 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CPP) $(CFLAGS) -o $@ $^
+
+%.o: %.cpp
+	$(CPP) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)

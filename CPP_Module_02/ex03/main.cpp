@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:57:32 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/14 12:20:29 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:45:30 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,9 @@ void	default_example(void)
  * of a triangle ABC and a point P. It then checks whether the point is inside
  * the triangle using the bsp function and prints the result.
  * 
- * @param	argc	number of command-line arguments
  * @param	argv	command-line arguments
  */
-void interactive_example(int argc, char **argv)
+void interactive_example(char **argv)
 {
 	Point	A(std::atof(argv[1]), std::atof(argv[2]));
 	Point	B(std::atof(argv[3]), std::atof(argv[4]));
@@ -81,7 +80,7 @@ void interactive_example(int argc, char **argv)
 bool	checkValidNumbers(char **argv)
 {
 	char	*end;
-	double	testConversion;
+	float	testConversion;
 
 	for (int i = 1; i < 9; i++)
 	{
@@ -92,6 +91,7 @@ bool	checkValidNumbers(char **argv)
 			return (false);
 		}
 	}
+	(void) testConversion;
 	return (true);
 }
 
@@ -116,14 +116,14 @@ int main(int argc, char **argv)
 		{
 			std::cout << "Error: "
 				<< "Attempt to run interactive example unsuccessful. "
-				<< "Not enough numbers provided.\n"
+				<< "Not enough arguments provided.\n"
 				<< "Example usage: ./bsp a1 a2 b1 b2 c1 c2 p1 p2" << std::endl;
 			return (EXIT_FAILURE);
 		}
 		else if (!checkValidNumbers(argv))
 			return (EXIT_FAILURE);
 		else 
-			interactive_example(argc, argv);
+			interactive_example(argv);
 	}
 	else
 		default_example();

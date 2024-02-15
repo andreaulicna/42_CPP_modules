@@ -6,7 +6,7 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
-#    Updated: 2024/01/18 18:07:09 by aulicna          ###   ########.fr        #
+#    Updated: 2024/02/15 19:26:30 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,10 @@ all: $(NAME)
 	@echo "brain executable ready ✅"
 
 $(NAME): $(OBJ)
-	$(CPP) $(CFLAGS) -o $@ $^
+	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
+
+%.o: %.cpp
+	$(CPP) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)

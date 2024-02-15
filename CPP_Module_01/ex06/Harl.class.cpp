@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 23:48:25 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/01 12:49:24 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:38:20 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,13 @@ void	Harl::complain(std::string level) const
 	{
 		case 0:
 			(this->*functionPtrs[0])();
+			// fallthrough
 		case 1:
 			(this->*functionPtrs[1])();
+			// fallthrough
 		case 2:
 			(this->*functionPtrs[2])();
+			// fallthrough
 		case 3:
 			(this->*functionPtrs[3])();
 			break ;

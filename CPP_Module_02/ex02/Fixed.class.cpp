@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 12:30:12 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/12 17:51:52 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:44:16 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ Fixed	&Fixed::operator ++ (void)
  * 					operator from the prefix version
  * @return	Fixed	copy of the Fixed object before it was incremented
  */
-Fixed	Fixed::operator ++ (int dummy)
+Fixed	Fixed::operator ++ (int)
 {
 	Fixed	toReturn;
 
@@ -259,7 +259,7 @@ Fixed	&Fixed::operator -- (void)
  * 					operator from the prefix version
  * @return	Fixed	copy of the Fixed object before it was decremented
  */
-Fixed	Fixed::operator -- (int dummy)
+Fixed	Fixed::operator -- (int)
 {
 	Fixed	toReturn;
 

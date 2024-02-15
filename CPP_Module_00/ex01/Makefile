@@ -6,7 +6,7 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 13:51:37 by aulicna           #+#    #+#              #
-#    Updated: 2024/02/15 15:38:13 by aulicna          ###   ########.fr        #
+#    Updated: 2024/02/15 19:20:34 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,6 @@ NAME = phonebook
 SRC = src/main.cpp \
 	src/Contact.class.cpp \
 	src/PhoneBook.class.cpp
-
-HEADER = incl/Contact.class.hpp \
-	incl/PhoneBook.class.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -31,9 +28,7 @@ all: $(NAME)
 	@echo "phonebook executable ready ✅"
 
 $(NAME): $(OBJ)
-	$(CPP) $(CFLAGS) $(OBJ) $(HEADER) -o $(NAME)
-
-$(OBJ): $(HEADER)
+	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
 	$(CPP) $(CFLAGS) -c $< -o $@

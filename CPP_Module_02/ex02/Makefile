@@ -6,7 +6,7 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
-#    Updated: 2024/02/11 10:29:46 by aulicna          ###   ########.fr        #
+#    Updated: 2024/02/15 19:43:47 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,6 @@ NAME = nowWeAreTalking
 
 SRC = main.cpp \
 	Fixed.class.cpp
-
-HEADER = Fixed.class.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -29,9 +27,10 @@ all: $(NAME)
 	@echo "$(NAME) executable ready ✅"
 
 $(NAME): $(OBJ)
-	$(CPP) $(CFLAGS) -o $@ $^
+	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
 
-$(OBJ): $(HEADER)
+%.o: %.cpp
+	$(CPP) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)

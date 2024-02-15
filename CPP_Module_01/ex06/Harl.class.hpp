@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 23:47:25 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/10 12:38:57 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:33:11 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HARL_CLASS_HPP
 
 # include <iostream>
+# include <cstdlib>
 
 class Harl
 {

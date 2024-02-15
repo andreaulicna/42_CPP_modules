@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:39:40 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/01 12:10:14 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:33:24 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int argc, char **argv)
 	Harl		harl;
 	std::string	levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	std::string	limit;
-	int			stop;
 
 	if (argc == 2)
 		harl.complain(argv[1]);

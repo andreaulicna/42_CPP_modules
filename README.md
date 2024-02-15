@@ -6,17 +6,20 @@
 
 #### Test cases
 - Input:
-    - Enter
+    - Whitespaces (also followed by something)
     - Ctrl + C and Ctrl + D
 - ADD:
     - adding contacts when the phonebook is full
         - how easily can be a contact overwritten
         - does the history (oldest saved) shifts?
+	- non-numeric characters for the phone number
+    - Ctrl + C and Ctrl + D
 - SEARCH:
     - obviously invalid index such as 'a', 'hello'
     - entry > 8 vs entry <= 8 when there are not yet 8 contacts saved
     - valid index when there are no contacts saved yet
     - printing of empty rows
+    - Ctrl + C and Ctrl + D
 	
 ### ex02
 
