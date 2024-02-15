@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:47:37 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/09 14:48:18 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:53:34 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include <iomanip>
 # include <iostream>
-# include <string.h>
 # include <cwctype>
+# include <limits>
+# include <cstdlib>
 
 class Contact
 {

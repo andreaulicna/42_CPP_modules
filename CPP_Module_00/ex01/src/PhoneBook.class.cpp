@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:05:14 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/13 11:33:24 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 18:01:03 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,8 @@ static void	printColumnOfPhonebook(std::string str)
  */
 static int	displayPhonebook(PhoneBook *phonebook)
 {
+	std::stringstream	i_str;
+
 	if (phonebook->getCountactsCount() == 0)
 	{
 		std::cout << "My Awesome PhoneBook: Nothing to display as no contacts "
@@ -162,15 +164,17 @@ static int	displayPhonebook(PhoneBook *phonebook)
 	std::cout << "+===========================================+\n";
 	std::cout << "|     Index|First Name| Last Name|  Nickname|\n";
 	std::cout << "+===========================================+\n";
-
 	for (int i = 0; i < phonebook->getCountactsCount(); i++)
 	{
+		i_str << (i + 1);
 		std::cout << "|";
-		printColumnOfPhonebook(std::to_string(i + 1));
+		printColumnOfPhonebook(i_str.str());
 		printColumnOfPhonebook(phonebook->getContact(i).getFirstName());
 		printColumnOfPhonebook(phonebook->getContact(i).getLastName());
 		printColumnOfPhonebook(phonebook->getContact(i).getNickname());
 		std::cout << '\n';
+		i_str.str("");
+		i_str.clear();
 	}
 	std::cout << "|----------|----------|----------|----------|" << std::endl;
 	return (1);
@@ -192,39 +196,65 @@ static void	printFoundEntry(Contact contact)
 }
 
 /**
+ * @brief	Checks the validity of input for the search function.
+ * 
+ * If the index is invalid or exceeds the number iof available contacts,
+ * a corresponding error message is displayed - different for when the index
+ * is actually invalid (i.e. not a number or index > 8) and when there are not
+ * yet enough contacts saved in the phonebok (index < 8).
+ * 
+ * @return	 bool	true if the input index is valid, false otherwise
+*/
+static bool	searchInputCheck(int inputNum, int contactsCount)
+{
+	if (inputNum == contactsCount)
+		return (true);
+	if (inputNum > contactsCount && inputNum <= 8)
+	{
+		std::cout << "Nothing to display for entry #" << inputNum
+			<< " as the phonebook has only " << contactsCount
+			<< " contact(s) so far." << std::endl;
+	}
+	else if (inputNum > 8)
+		std::cout << "Error: Invalid index. The phonebook can store only "
+		<< "up to 8 contacts." << std::endl;
+	return (false);
+}
+
+/**
  * @brief	Searches for a contact in the phonebook and displays its details.
  *
- * Prompts the user to enter the index of the entry to display. If the index
- * is invalid or exceeds the available contacts, a corresponding error message
- * is displayed - different for when the index is actually invalid (i.e. not
- * a number or index > 8) and when there are not yet enough contacts saved
- * in the phonebok (index < 8)
+ * Prompts the user to enter the index of the entry to display. Input is checked
+ * for validity in searchInputCheck which also handles printing of error
+ * messages.
  */
 void	PhoneBook::search(void) const
 {
-	std::string	input;
+	std::string			input;
+	int					inputNum;
 
 	if (!displayPhonebook((PhoneBook *) this))
 		return ;
 	std::cout << "\nEnter the index of the entry to display: ";
 	std::getline(std::cin, input);
-	if (input > std::to_string(this->_contactsCount) && input < "9")
+	if (std::cin.eof())
 	{
-		std::cout << "Nothing to display for entry #" << input
-			<< " as the phonebook has only " << this->_contactsCount
-			<< " contact(s) so far." << std::endl;
-		return ;
+		std::cout << std::endl;
+		exit(1);
 	}
-	for (int i = 0; i < 8; i++)
+	inputNum = std::atoi(input.c_str());
+	if (searchInputCheck(inputNum, this->_contactsCount))
 	{
-		if (input == std::to_string(i + 1))
+		for (int i = 0; i < 8; i++)
 		{
-			std::cout << "Displaying entry #" << input << '\n';
-			std::cout << "-------------------\n";
-			printFoundEntry(this->_contacts[i]);
-			std::cout << "-------------------" << std::endl;
-			return ;
+			if (inputNum == i + 1)
+			{
+				std::cout << "Displaying entry #" << inputNum << '\n';
+				std::cout << "-------------------\n";
+				printFoundEntry(this->_contacts[i]);
+				std::cout << "-------------------" << std::endl;
+				return ;
+			}
 		}
 	}
-	std::cout << "Error: Invalid index." << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:35:16 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/11 13:58:14 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:18:54 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static std::string	enterCommand()
 	std::cout << "Enter a command: ";
 	std::getline(std::cin, command);
 	if (std::cin.eof() == 1)
+	{
+		std::cout << std::endl;
 		command = "EXIT";
+	}
 	return (command);
 }
 

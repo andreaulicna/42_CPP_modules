@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:48:34 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/11 14:39:54 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/15 18:00:20 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,49 @@ Contact::~Contact(void)
  * @brief	Gets a value for a member attibute of a new Contact object from
  * the standard input.
  *
- * A saved contact can't have empty fields, so the user is repeatedly prompted
- * until there is an input to return.
+ * A saved contact can't have empty fields, so the function is recursively
+ * called to continue prompting the user until there is an input to return.
+ * 
+ * In case the variable that is being set is the phone number, there is
+ * an additional check to ensure that it includes only numeric characters that
+ * works the same as the check for empty input.
  *
  * @param	var_name	member attribute to get the input for
  * @return	std::string	value to set to the member attribute
 */
 static std::string	setValue(std::string var_name)
 {
-	std::string	input;
+	std::string				input;
+	std::string::size_type	first;
 
-	std::cout << "Enter " << var_name << ": ";
-	std::getline(std::cin, input);
-	while (input.length() == 0 || std::iswspace(input[0]))
-	{
-		std::cout << "Error: " << (char) toupper(var_name[0]) << &var_name[1]
-			<< " cannot be empty." << std::endl;
+	while (true) {
 		std::cout << "Enter " << var_name << ": ";
 		std::getline(std::cin, input);
+		first = input.find_first_not_of(" \f\n\r\t\v");
+		if (std::cin.eof())
+		{
+			std::cout << std::endl;
+			exit(1);
+		}
+		if (input.length() == 0 || first == std::string::npos)
+		{
+			std::cout << "Error: " << (char) toupper(var_name[0]) << &var_name[1]
+				<< " cannot be empty." << '\n';
+			continue;
+		}
+		if (first != std::string::npos)
+			input = input.substr(first);
+		if (var_name == "phone number")
+		{
+			first = input.find_first_not_of("0123456789");
+			if (first != std::string::npos)
+			{
+				std::cout << "Error: Phone number must include numeric "
+					"characters only.\n";
+				continue;
+			}
+		}
+		break;
 	}
 	return (input);
 }
