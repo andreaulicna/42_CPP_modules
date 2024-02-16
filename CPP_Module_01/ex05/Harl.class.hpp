@@ -6,12 +6,12 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 23:47:25 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/15 19:32:19 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/16 12:02:15 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HARL_CLASS_HPP
-# define HARL_CLASS_CPP
+# define HARL_CLASS_HPP
 
 # include <iostream>
 # include <cstdlib>
