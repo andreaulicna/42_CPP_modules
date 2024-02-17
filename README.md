@@ -11,12 +11,13 @@
 - ADD:
     - adding contacts when the phonebook is full
         - how easily can be a contact overwritten
-        - does the history (oldest saved) shifts?
+        - does the history (oldest saved) shift?
 	- non-numeric characters for the phone number
     - Ctrl + C and Ctrl + D
 - SEARCH:
     - obviously invalid index such as 'a', 'hello'
-    - entry > 8 vs entry <= 8 when there are not yet 8 contacts saved
+    - index > 8 vs index <= 8 when there are not yet 8 contacts saved
+	- index <= 0
     - valid index when there are no contacts saved yet
     - printing of empty rows
     - Ctrl + C and Ctrl + D

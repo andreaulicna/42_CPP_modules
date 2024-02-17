@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:05:14 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/15 19:49:29 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/02/16 14:04:18 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ static void	printFoundEntry(Contact contact, int inputNum)
 */
 static bool	searchInputCheck(int inputNum, int contactsCount)
 {
-	if (inputNum == contactsCount)
+	if (inputNum > 0 && inputNum <= contactsCount )
 		return (true);
 	if (inputNum > contactsCount && inputNum <= 8)
 	{
@@ -221,6 +221,9 @@ static bool	searchInputCheck(int inputNum, int contactsCount)
 	else if (inputNum > 8)
 		std::cout << "Error: Invalid index. The phonebook can store only "
 		<< "up to 8 contacts." << std::endl;
+	else if (inputNum <= 0)
+		std::cout << "Error: Invalid index. Please enter a number between "
+		"1 and 8." << std::endl;
 	return (false);
 }
 
