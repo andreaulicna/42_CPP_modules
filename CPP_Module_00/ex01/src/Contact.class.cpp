@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:48:34 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/15 20:00:04 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/17 11:44:01 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@ static bool	checkEmptyString(std::string input, std::string::size_type first,
 		std::cout << "Error: " << (char) toupper(var_name[0]) << &var_name[1]
 			<< " cannot be empty." << '\n';
 		return (true);
+	}
+	return (false);
+}
+
+static bool checkNonPrintable(std::string input, std::string var_name)
+{
+	for (int i = 0; input[i]; i++)
+	{
+		if (!isprint(input[i]))
+		{
+			std::cout << "Error: " << (char) toupper(var_name[0])
+				<< &var_name[1] << " must include printable characters only."
+				<< '\n';
+			return (true);
+		}
 	}
 	return (false);
 }
@@ -84,7 +99,8 @@ static std::string	setValue(std::string var_name)
 			std::cout << std::endl;
 			exit(1);
 		}
-		if (checkEmptyString(input, first, var_name))
+		if (checkEmptyString(input, first, var_name)
+			|| checkNonPrintable(input, var_name))
 			continue ;
 		if (first != std::string::npos)
 			input = input.substr(first);
