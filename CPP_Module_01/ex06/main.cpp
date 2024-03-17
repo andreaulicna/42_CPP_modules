@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:39:40 by aulicna           #+#    #+#             */
-/*   Updated: 2024/02/15 19:33:24 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/17 11:39:15 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 bool	chooseComplains(Harl harl)
 {
 	std::string	inputLevel;
+	
 	std::cout << "___Harl's complains that you asked for (5 inputs)___\n\n";
 	for (int i = 0; i < 6; i++)
 	{
