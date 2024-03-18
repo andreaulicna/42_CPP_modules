@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 13:51:40 by aulicna           #+#    #+#             */
-/*   Updated: 2024/01/07 14:41:40 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/18 12:32:46 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 		for (int i = 1; i < argc; i++)
 		{
 			for (int j = 0; argv[i][j] != '\0'; j++)
-				std::cout << (char)toupper(argv[i][j]);
+				std::cout << static_cast<char>(toupper(argv[i][j]));
 		}
 		std::cout << std::endl;
 	}
