@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:59:32 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/19 17:40:48 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/19 19:29:34 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ int main(void)
 //	}
 //	std::cout << clap;
 //	std::cout << trap;
-//	return (0);
+	return (0);
 }

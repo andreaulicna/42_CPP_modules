@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:50:35 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/19 19:06:33 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/19 19:21:37 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ ClapTrap    &ClapTrap::operator = (const ClapTrap &src)
 		this->_energyPoints = src.getEnergyPoints();
 		this->_attackDamage = src.getAttackDamage();
 	}
-	return *this;
+	return (*this);
 }
 
 ClapTrap::~ClapTrap(void)

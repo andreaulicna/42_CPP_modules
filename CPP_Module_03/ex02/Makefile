@@ -6,15 +6,16 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
-#    Updated: 2024/03/19 19:27:00 by aulicna          ###   ########.fr        #
+#    Updated: 2024/03/19 19:26:44 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = serena_my_love
+NAME = repetitive_work
 
 SRC = main.cpp \
 	ClapTrap.class.cpp \
-	ScavTrap.class.cpp
+	ScavTrap.class.cpp \
+	FragTrap.class.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

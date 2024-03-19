@@ -6,15 +6,15 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:59:32 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/19 19:29:27 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/19 19:29:22 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.class.hpp"
+#include "FragTrap.class.hpp"
 
 int main(void)
 {
-// EX00
+//	EX00
 //	ClapTrap    clap("Clap");
 //	ClapTrap    trap("Trap");
 //
@@ -49,20 +49,20 @@ int main(void)
 //	std::cout << trap;
 //	return (0);
 
-// EX01
-	ScavTrap	scav("Scav");
-	ScavTrap	trap("Trap");
-
-	std::cout << scav;
-	std::cout << trap;
-	scav.attack("Trap");
-	trap.takeDamage(scav.getAttackDamage());
-	scav.attack("Trap");
-	trap.takeDamage(scav.getAttackDamage());
-	scav.attack("Trap");
-	trap.takeDamage(scav.getAttackDamage());
-	trap.beRepaired(3);
-
+//	EX01
+//	ScavTrap	scav("Scav");
+//	ScavTrap	trap("Trap");
+//
+//	std::cout << scav;
+//	std::cout << trap;
+//	scav.attack("Trap");
+//	trap.takeDamage(scav.getAttackDamage());
+//	scav.attack("Trap");
+//	trap.takeDamage(scav.getAttackDamage());
+//	scav.attack("Trap");
+//	trap.takeDamage(scav.getAttackDamage());
+//	trap.beRepaired(3);
+//
 //	ScavTrap	scav("Scav");
 //	ScavTrap	trap("Trap");
 //	unsigned int	check;
@@ -76,5 +76,20 @@ int main(void)
 //		if (check > i)
 //			scav.takeDamage(trap.getAttackDamage());
 //	}
+
+//	EX02
+	FragTrap	frag("Frag");
+	FragTrap	trap("Trap");
+
+	std::cout << frag;
+	std::cout << trap;
+	frag.attack("Trap");
+	trap.takeDamage(frag.getAttackDamage());
+	frag.attack("Trap");
+	trap.takeDamage(frag.getAttackDamage());
+	frag.attack("Trap");
+	trap.takeDamage(frag.getAttackDamage());
+	trap.beRepaired(50);
+	frag.highFivesGuys();
 	return (0);
 }
