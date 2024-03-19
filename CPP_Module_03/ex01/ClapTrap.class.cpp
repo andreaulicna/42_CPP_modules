@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:50:35 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/19 19:06:33 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/19 19:06:54 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	ClapTrap::setAttackDamage(unsigned int amount)
 
 void    ClapTrap::attack(const std::string& target)
 {
-    if (this->_energyPoints > 0 && this->_hitPoints > 0)
-    {
+	if (this->_energyPoints > 0 && this->_hitPoints > 0)
+	{
 		this->_energyPoints -= 1;
 		std::cout << "ClapTrap '" << this->_name << "' attacks '" << target
 			<< "' causing " << this->_attackDamage << " points of damage!"
@@ -118,7 +118,7 @@ void    ClapTrap::beRepaired(unsigned int amount)
     {
 		this->_hitPoints += amount;
 		this->_energyPoints -= 1;
-		std::cout << "ClapTrap '" << this->_name <<"' was repared with "
+		std::cout << "ClapTrap '" << this->_name << "' was repared with "
 			<< amount << " hit points and now is at " << this->_hitPoints
 			<< " hit points." << std::endl;
 	}
@@ -133,6 +133,6 @@ std::ostream &operator << (std::ostream &o, ClapTrap const &instance)
 	o << "ClapTrap '" << instance.getName() << "' "
 		<< "hit points (" << instance.getHitPoints() << "), "
 		<< "energy points (" << instance.getEnergyPoints() << "), "
-		<< "attack damage (" << instance.getAttackDamage() << ")." << std::endl;
+		<< "attack damage (" << instance.getAttackDamage() << ").";
 	return (o);
 }
