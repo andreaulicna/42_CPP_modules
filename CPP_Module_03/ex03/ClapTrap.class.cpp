@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:50:35 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/19 19:21:21 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/25 14:08:39 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,6 @@ std::ostream &operator << (std::ostream &o, ClapTrap const &instance)
 	o << "ClapTrap '" << instance.getName() << "' "
 		<< "hit points (" << instance.getHitPoints() << "), "
 		<< "energy points (" << instance.getEnergyPoints() << "), "
-		<< "attack damage (" << instance.getAttackDamage() << ").";
+		<< "attack damage (" << instance.getAttackDamage() << ")." << std::endl;
 	return (o);
 }

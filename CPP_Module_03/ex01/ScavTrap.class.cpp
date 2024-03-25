@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:04:47 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/19 19:22:21 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/25 12:13:36 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ ScavTrap::ScavTrap(const ScavTrap& copy): ClapTrap(copy)
 {
 	std::cout << "ScavTrap copy constructor called for an instance named '"
 		<< copy.getName() << "'" << std::endl; 
-
+	*this = copy;
 }
 
 // Copy assignment operator overload

@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 19:11:21 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/19 19:26:00 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/25 14:09:06 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ FragTrap::FragTrap(const FragTrap& copy): ClapTrap(copy)
 {
 	std::cout << "FragTrap copy constructor called for an instance named '"
 		<< copy.getName() << "'" << std::endl; 
+	*this = copy;
 }
 
 // Copy assignment operator overload
@@ -62,7 +63,7 @@ FragTrap::~FragTrap(void)
 
 std::ostream &operator << (std::ostream &o, FragTrap const &instance)
 {
-	o << "ScavTrap '" << instance.getName() << "' "
+	o << "FragTrap '" << instance.getName() << "' "
 		<< "hit points (" << instance.getHitPoints() << "), "
 		<< "energy points (" << instance.getEnergyPoints() << "), "
 		<< "attack damage (" << instance.getAttackDamage() << "), " << std::endl;

@@ -6,90 +6,54 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:59:32 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/19 19:29:22 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/25 14:22:30 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.class.hpp"
+#include "DiamondTrap.class.hpp"
 
 int main(void)
 {
-//	EX00
-//	ClapTrap    clap("Clap");
-//	ClapTrap    trap("Trap");
-//
-//	std::cout << clap;
-//	std::cout << trap;
-//	clap.setAttackDamage(5);
-//	trap.setAttackDamage(7);
-//	clap.attack("Trap");
-//	trap.takeDamage(clap.getAttackDamage());
-//	clap.attack("Trap");
-//	trap.takeDamage(clap.getAttackDamage());
-//	clap.attack("Trap");
-//	trap.takeDamage(clap.getAttackDamage());
+	ClapTrap	cla("Cla");
+	ScavTrap	sca("Sca");
+	FragTrap	fra("Fra");
+	DiamondTrap	dia("Dia");
 
-// Change hit points to 20 in the constructor to have the below make a point
-//	ClapTrap   		clap("Clap");
-//	ClapTrap    	trap("Trap");
-//	unsigned int	check;
-//
-//	std::cout << clap;
-//	std::cout << trap;
-//	clap.setAttackDamage(1);
-//	trap.setAttackDamage(7);
-//	check = clap.getEnergyPoints();
-//	for (unsigned int i = 0; i < 12; i++)
-//	{
-//		clap.attack("Trap");
-//		if (check > i)
-//			trap.takeDamage(clap.getAttackDamage());
-//	}
-//	std::cout << clap;
-//	std::cout << trap;
-//	return (0);
+	std::cout << cla;
+	std::cout << sca;
+	std::cout << fra;
+	std::cout << dia;
+	dia.whoAmI();
 
-//	EX01
-//	ScavTrap	scav("Scav");
-//	ScavTrap	trap("Trap");
-//
-//	std::cout << scav;
-//	std::cout << trap;
-//	scav.attack("Trap");
-//	trap.takeDamage(scav.getAttackDamage());
-//	scav.attack("Trap");
-//	trap.takeDamage(scav.getAttackDamage());
-//	scav.attack("Trap");
-//	trap.takeDamage(scav.getAttackDamage());
-//	trap.beRepaired(3);
-//
-//	ScavTrap	scav("Scav");
-//	ScavTrap	trap("Trap");
-//	unsigned int	check;
-//
-//	std::cout << scav;
-//	std::cout << trap;
-//	check = trap.getEnergyPoints();
-//	for (unsigned int i = 0; i < 52; i++)
-//	{
-//		trap.attack("Scav");
-//		if (check > i)
-//			scav.takeDamage(trap.getAttackDamage());
-//	}
+	cla.attack("Victim");
+	sca.attack("Victim");
+	fra.attack("Victim");
+	dia.attack("Victim");
+	std::cout << cla;
+	std::cout << sca;
+	std::cout << fra;
+	std::cout << dia;
 
-//	EX02
-	FragTrap	frag("Frag");
-	FragTrap	trap("Trap");
+	cla.takeDamage(10);
+	sca.takeDamage(10);
+	fra.takeDamage(10);
+	dia.takeDamage(10);
+	std::cout << cla;
+	std::cout << sca;
+	std::cout << fra;
+	std::cout << dia;
 
-	std::cout << frag;
-	std::cout << trap;
-	frag.attack("Trap");
-	trap.takeDamage(frag.getAttackDamage());
-	frag.attack("Trap");
-	trap.takeDamage(frag.getAttackDamage());
-	frag.attack("Trap");
-	trap.takeDamage(frag.getAttackDamage());
-	trap.beRepaired(50);
-	frag.highFivesGuys();
+	cla.beRepaired(3);
+	sca.beRepaired(3);
+	fra.beRepaired(3);
+	dia.beRepaired(3);
+	std::cout << cla;
+	std::cout << sca;
+	std::cout << fra;
+	std::cout << dia;
+
+	sca.guardGate();
+	fra.highFivesGuys();
+	dia.whoAmI();
 	return (0);
 }

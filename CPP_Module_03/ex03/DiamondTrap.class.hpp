@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:45:58 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/20 15:50:00 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/25 12:15:56 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "FragTrap.class.hpp"
 #include "ScavTrap.class.hpp"
 
-class DiamondTrap : public FragTrap, public ScavTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
 public:
 	// Default constructor
@@ -35,8 +35,10 @@ public:
 	void	whoAmI(void);
 
 private:
-	std::string	name;
+	std::string	_name;
 
 };
+
+std::ostream &operator << (std::ostream &o, DiamondTrap const &instance);
 
 #endif
