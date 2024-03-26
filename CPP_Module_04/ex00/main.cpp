@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:39:40 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/26 11:34:22 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/26 12:42:41 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ int main()
 		i->makeSound(); //will output the cat sound!
 		j->makeSound();
 		meta->makeSound();
+		delete meta;
+		delete j;
+		delete i;
 		std::cout << std::endl;
 	}
 	{
@@ -40,6 +43,9 @@ int main()
 		i->makeSound(); //will output the cat sound!
 		j->makeSound();
 		meta->makeSound();
+		delete meta;
+		delete j;
+		delete i;
 	}
 	return 0;
 }
