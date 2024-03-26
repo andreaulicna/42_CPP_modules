@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:48:55 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/26 11:37:08 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/26 13:21:06 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ Dog::Dog(const Dog& copy): Animal(copy)
 // Copy assignment operator overload
 Dog	&Dog::operator = (const Dog &src)
 {
-	std::cout << "Copy assignment operator of the Dog class called." << std::endl;
+	std::cout << "Copy assignment operator of the Dog class called."
+		<< std::endl;
 	if (this != &src)
 	{
 		this->_type = src._type;
@@ -46,5 +47,6 @@ Dog::~Dog(void)
 // Other member functions
 void	Dog::makeSound(void) const
 {
-	std::cout << "An instance of type '" << this->_type << "' is barking." << std::endl;
+	std::cout << "An instance of type '" << this->_type << "' is barking."
+		<< std::endl;
 }

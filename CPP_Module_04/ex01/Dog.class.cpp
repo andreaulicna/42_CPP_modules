@@ -1,53 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.class.cpp                                      :+:      :+:    :+:   */
+/*   Dog.class.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:48:55 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/26 11:17:34 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/26 14:14:12 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongCat.class.hpp"
+#include "Dog.class.hpp"
 
 // Default constructor
-WrongCat::WrongCat(void): WrongAnimal()
+Dog::Dog(void): Animal()
 {
-	std::cout << "Default constructor of the WrongCat class called."
-		<< std::endl;
-	this->_type = "WrongCat";
+	std::cout << "Default constructor of the Dog class called." << std::endl;
+	this->_type = "Dog";
+	this->_brain = new Brain();
 }
 
 // Copy constructor
-WrongCat::WrongCat(const WrongCat& copy): WrongAnimal(copy)
+Dog::Dog(const Dog& copy): Animal(copy)
 {
-	std::cout << "Copy constructor of the WrongCat class called." << std::endl;
+	std::cout << "Copy constructor of the Dog class called." << std::endl;
 	*this = copy;
 }
 
 // Copy assignment operator overload
-WrongCat	&WrongCat::operator = (const WrongCat &src)
+Dog	&Dog::operator = (const Dog &src)
 {
-	std::cout << "Copy assignment operator of the WrongCat class called."
+	std::cout << "Copy assignment operator of the Dog class called."
 		<< std::endl;
 	if (this != &src)
 	{
 		this->_type = src._type;
+		*this->_brain = *src._brain;
 	}
 	return (*this);
 }
 
 // Destructor
-WrongCat::~WrongCat(void)
+Dog::~Dog(void)
 {
-	std::cout << "Destructor of the WrongCat class called." << std::endl;
+	delete this->_brain;
+	std::cout << "Destructor of the Dog class called." << std::endl;
 }
 
 // Other member functions
-void	WrongCat::makeSound(void) const
+void	Dog::makeSound(void) const
 {
-	std::cout << "An instance of type '" << this->_type << "' is meowing."
+	std::cout << "An instance of type '" << this->_type << "' is barking."
 		<< std::endl;
 }

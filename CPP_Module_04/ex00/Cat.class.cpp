@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:48:55 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/26 11:36:49 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/26 13:20:54 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ Cat::Cat(const Cat& copy): Animal(copy)
 // Copy assignment operator overload
 Cat	&Cat::operator = (const Cat &src)
 {
-	std::cout << "Copy assignment operator of the Cat class called." << std::endl;
+	std::cout << "Copy assignment operator of the Cat class called."
+		<< std::endl;
 	if (this != &src)
 	{
 		this->_type = src._type;
@@ -46,5 +47,6 @@ Cat::~Cat(void)
 // Other member functions
 void	Cat::makeSound(void) const
 {
-	std::cout << "An instance of type '" << this->_type << "' is meowing." << std::endl;
+	std::cout << "An instance of type '" << this->_type << "' is meowing."
+		<< std::endl;
 }
