@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:20:03 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 12:07:52 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/27 18:46:09 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ AAnimal	&AAnimal::operator = (const AAnimal &src)
 	std::cout << "Copy assignment operator of the AAnimal class called."
 		<< std::endl;
 	if (this != &src)
-	{
 		this->_type = src._type;
-	}
 	return (*this);
 }
 

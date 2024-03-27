@@ -6,17 +6,16 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
-#    Updated: 2024/03/27 19:26:01 by aulicna          ###   ########.fr        #
+#    Updated: 2024/03/27 21:42:38 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = world_on_fire
+NAME = materia
 
 SRC = main.cpp \
-		AAnimal.class.cpp \
-		Dog.class.cpp \
-		Cat.class.cpp \
-		Brain.class.cpp
+		AMateria.class.cpp \
+		Ice.class.cpp \
+		Character.class.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
