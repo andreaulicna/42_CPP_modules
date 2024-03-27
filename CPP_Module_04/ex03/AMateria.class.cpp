@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:43:11 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 20:54:21 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/27 22:31:47 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ AMateria::AMateria(std::string const & type): _type(type), _isEquipped(false)
 AMateria::AMateria(const AMateria& copy)
 {
 	std::cout << "Copy constructor of the AMateria class called." << std::endl;
-	*this = copy;
+	this->_type = copy._type;
 }
 
 // Copy assignment operator overload
@@ -39,7 +39,7 @@ AMateria	&AMateria::operator = (const AMateria &src)
 	if (this != &src)
 	{
 		this->_type = src._type;
-		this->_isEquipped = false;
+		this->_isEquipped = src._isEquipped;
 	}
 	return (*this);
 }
