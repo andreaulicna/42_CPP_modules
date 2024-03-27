@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:20:03 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/26 13:20:42 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/27 11:42:15 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,9 @@ void	Animal::makeSound(void) const
 {
 	std::cout << "An instance of type '" << this->_type
 		<< "' is making a sound." << std::endl;
+}
+
+void	Animal::brainDump(void)	const
+{
+	return ;
 }

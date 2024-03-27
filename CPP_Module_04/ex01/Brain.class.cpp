@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:26:57 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/26 13:54:49 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/26 15:27:13aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ Brain	&Brain::operator = (const Brain &src)
 	if (this != &src)
 	{
 		for (int i = 0; i < 100; i++)
-			this->_ideas[i] = src._ideas[i];
+		{
+			if (src._ideas[i].length() > 0)
+				this->_ideas[i] = src._ideas[i];
+		}
 	}
 	return (*this);
 }
@@ -38,4 +41,27 @@ Brain	&Brain::operator = (const Brain &src)
 Brain::~Brain(void)
 {
 	std::cout << "Destructor of the Brain class called." << std::endl;
+}
+
+const std::string	Brain::getIdea(int i) const
+{
+	if (i < 100)
+		return (this->_ideas[i]);
+	else
+		return ("The brain's capacity is 100 ideas only.");
+}
+
+const std::string	*Brain::getIdeaAddress(int i) const
+{
+	if (i < 100)
+		return (&(this->_ideas[i]));
+	return (NULL);
+}
+
+void	Brain::setIdea(std::string idea, int i)
+{
+	if (i < 100)
+		this->_ideas[i] = idea;
+	else
+		std::cerr << "Sorry, the brain doesn't have the capacity for such a big idea." << std::endl;
 }
