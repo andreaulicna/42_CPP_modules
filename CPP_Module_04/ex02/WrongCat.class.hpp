@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.class.hpp                                   :+:      :+:    :+:   */
+/*   WrongCat.class.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 10:19:45 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 12:06:15 by aulicna          ###   ########.fr       */
+/*   Created: 2024/03/26 10:44:13 by aulicna           #+#    #+#             */
+/*   Updated: 2024/03/26 11:16:04 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_CLASS_HPP
-# define ANIMAL_CLASS_HPP
+#ifndef WRONGCAT_CLASS_HPP
+# define WRONGCAT_CLASS_HPP
 
 # include <iostream>
+#include "WrongAnimal.class.hpp"
 
-class Animal
+class WrongCat : public WrongAnimal
 {
 public:
 	// Default constructor
-	Animal(void);
+	WrongCat(void);
 	// Copy constructor
-	Animal(const Animal& copy);
+	WrongCat(const WrongCat& copy);
 	// Copy assignment operator overload
-	Animal	&operator=(const Animal &src);
+	WrongCat	&operator=(const WrongCat &src);
 	// Destructor
-	virtual ~Animal(void);
-
-	// Getters
-	const std::string	getType(void) const;
+	~WrongCat(void);
 
 	// Other member functions
-	virtual void	makeSound(void) const;
-	virtual void	brainDump(void)	const;
+	void	makeSound(void) const;
 
-protected:
-	std::string	_type;
+private:
 
 };
 

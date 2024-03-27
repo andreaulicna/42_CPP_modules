@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:39:40 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/26 12:42:41 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/26 16:38:40 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,19 @@ int main()
 
 		std::cout << j->getType() << " " << std::endl;
 		std::cout << i->getType() << " " << std::endl;
-		i->makeSound(); //will output the cat sound!
+		i->makeSound(); //will NOT output the cat sound!
 		j->makeSound();
 		meta->makeSound();
 		delete meta;
 		delete j;
+		delete i;
+		std::cout << std::endl;
+	}
+	{
+		const WrongCat* i = new WrongCat();
+
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound(); //will output the cat sound bcs it's WrongCat pointer!
 		delete i;
 	}
 	return 0;

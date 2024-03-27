@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:20:03 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 11:42:15 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:18:50 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ Animal::~Animal(void)
 }
 
 // Getters
-std::string	Animal::getType(void) const
+const std::string	Animal::getType(void) const
 {
 	return (this->_type);
 }

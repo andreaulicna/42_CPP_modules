@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.class.cpp                                   :+:      :+:    :+:   */
+/*   AAnimal.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:20:03 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 12:19:07 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:07:52 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.class.hpp"
+#include "AAnimal.class.hpp"
 
 // Default constructor
-Animal::Animal(void)
+AAnimal::AAnimal(void)
 {
-	std::cout << "Default constructor of the Animal class called." << std::endl;
-	this->_type = "Animal";
+	std::cout << "Default constructor of the AAnimal class called." << std::endl;
+	this->_type = "AAnimal";
 }
 
 // Copy constructor
-Animal::Animal(const Animal& copy)
+AAnimal::AAnimal(const AAnimal& copy)
 {
-	std::cout << "Copy constructor of the Animal class called." << std::endl;
+	std::cout << "Copy constructor of the AAnimal class called." << std::endl;
 	*this = copy;
 }
 
 // Copy assignment operator overload
-Animal	&Animal::operator = (const Animal &src)
+AAnimal	&AAnimal::operator = (const AAnimal &src)
 {
-	std::cout << "Copy assignment operator of the Animal class called."
+	std::cout << "Copy assignment operator of the AAnimal class called."
 		<< std::endl;
 	if (this != &src)
 	{
@@ -39,20 +39,13 @@ Animal	&Animal::operator = (const Animal &src)
 }
 
 // Destructor
-Animal::~Animal(void)
+AAnimal::~AAnimal(void)
 {
-	std::cout << "Destructor of the Animal class called." << std::endl;
+	std::cout << "Destructor of the AAnimal class called." << std::endl;
 }
 
 // Getters
-const std::string	Animal::getType(void) const
+const std::string	AAnimal::getType(void) const
 {
 	return (this->_type);
-}
-
-// Other member functions
-void	Animal::makeSound(void) const
-{
-	std::cout << "An instance of type '" << this->_type
-		<< "' is making a sound." << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/26 12:41:55 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:06:34 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
 	virtual ~Animal(void);
 
 	// Getters
-	std::string	getType(void) const;
+	const std::string	getType(void) const;
 
 	// Other member functions
 	virtual void	makeSound(void) const;

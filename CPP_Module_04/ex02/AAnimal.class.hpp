@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.class.hpp                                   :+:      :+:    :+:   */
+/*   AAnimal.class.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:19:45 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 12:06:15 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/03/27 11:42:06 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_CLASS_HPP
-# define ANIMAL_CLASS_HPP
+#ifndef AANIMAL_CLASS_HPP
+# define AANIMAL_CLASS_HPP
 
 # include <iostream>
 
-class Animal
+class AAnimal
 {
 public:
 	// Default constructor
-	Animal(void);
+	AAnimal(void);
 	// Copy constructor
-	Animal(const Animal& copy);
+	AAnimal(const AAnimal& copy);
 	// Copy assignment operator overload
-	Animal	&operator=(const Animal &src);
+	AAnimal	&operator=(const AAnimal &src);
 	// Destructor
-	virtual ~Animal(void);
+	virtual ~AAnimal(void);
 
 	// Getters
 	const std::string	getType(void) const;
 
 	// Other member functions
-	virtual void	makeSound(void) const;
-	virtual void	brainDump(void)	const;
+	virtual void	makeSound(void) const = 0;
+	virtual void	brainDump(void)	const = 0;
 
 protected:
 	std::string	_type;
