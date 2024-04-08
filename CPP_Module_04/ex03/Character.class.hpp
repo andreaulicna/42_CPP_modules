@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:01:07 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 22:57:58 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/08 11:24:50 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ public:
 	void unequip(int idx);
 	void use(int idx, ICharacter& target);
 
+	static void	getFloor(void);
 	static void	sweepFloor(void);
 
 private:

@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 12:57:33 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 23:02:15 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/08 11:25:26 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,28 @@ int main(void)
 		AMateria	*ice3 = new Ice();
 		AMateria	*ice4 = new Ice();
 		ICharacter	*john = new Character("John");
+		ICharacter	*ben = new Character("Ben");
 
+		Character::getFloor();
 		john->equip(ice1);
 		john->equip(ice2);
 		john->equip(ice3);
 		john->equip(ice4);
 		john->getInventory();
 		john->unequip(1);
+		Character::getFloor();
 		john->getInventory();
 		john->unequip(5);
 		john->unequip(-8);
 		john->unequip(2);
+		Character::getFloor();
 		john->getInventory();
+		ben->equip(ice1);
+		ben->getInventory();
+		Character::getFloor();
 
 		delete john;
+		delete ben;
 		Character::sweepFloor();
 	}
 	{

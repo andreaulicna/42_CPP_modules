@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:01:09 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 23:06:38 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/08 13:04:10 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Character::Character(void): ICharacter()
 // Constructor overloads
 Character::Character(std::string name): ICharacter()
 {
-	std::cout << "Constructor overload of the Character class called." << std::endl;
+	std::cout << "Constructor overload of the Character class for a Character named '" << name << "' called." << std::endl;
 	this->_name = name;
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
@@ -83,7 +83,7 @@ std::string const	&Character::getName() const
 
 void	Character::getInventory(void) const
 {
-	std::cout << "*** Character's '" << this->_name << "' inventory *** " << "\n";
+	std::cout << "\n*** Character's '" << this->_name << "' inventory *** " << "\n";
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_inventory[i])
@@ -91,12 +91,26 @@ void	Character::getInventory(void) const
 		else
 			std::cout << i << ". Free space" << std::endl;
 	}
+	std::cout << std::endl;
+}
+
+void	Character::getFloor(void)
+{
+	if (_floor[0])
+		std::cout << "\n*** The Floor ***" << "\n";
+	for (int i = 0; i < 100; i++)
+	{
+		if (_floor[i])
+			std::cout << i <<". place of the Floor: '" << _floor[i]->getType() << "' saved at " << _floor[i] << std::endl;
+	}
+	std::cout << std::endl;
 }
 
 // Other member functions
 void Character::equip(AMateria* m)
 {
 	int	i;
+	int	i_floor;
 
 	if (m->getIsEquipped())
 	{
@@ -110,6 +124,19 @@ void Character::equip(AMateria* m)
 	{
 		std::cerr << "Character's '" << this->_name << "' inventory is full and no more materias can be added unless one is dropped." << std::endl;
 		return ;
+	}
+	i_floor = 0;
+	while (i_floor < 100)
+	{
+		if (this->_floor[i_floor] == m)
+		{
+			this->_inventory[i] = m;
+			this->_inventory[i]->setIsEquipped(true);
+			this->_floor[i_floor] = NULL;
+			std::cout << "Character '" << this->_name << "' has picked up '" << m->getType() << "' materia from the floor." << std::endl;
+			return ;
+		}
+		i_floor++;
 	}
 	this->_inventory[i] = m;
 	this->_inventory[i]->setIsEquipped(true);
@@ -130,13 +157,19 @@ void Character::unequip(int idx)
 	{
 		while (i < 100 && this->_floor[i])
 			i++;
+//		if (i == 100)
+//		{
+//			std::cerr << "There is no more space on the floor! Let's delete the most recent materia that has been dropped." << std::endl;
+//			delete floor[99];
+//			i = 0;
+//		}
 		this->_floor[i] = this->_inventory[idx];
 		this->_floor[i]->setIsEquipped(false);
 		this->_inventory[idx] = NULL;
-		std::cout << "Successfully unequipped Materia '" << this->_inventory[i]->getType() << "' from Character '" << this->getName() << "'." << std::endl;
+		std::cout << "Successfully unequipped Materia '" << this->_floor[i]->getType() << "' from Character '" << this->getName() << "'." << std::endl;
 	}
 	else
-		std::cerr << "Sort of right place, but the Character '" << this->getName() << "' doesn't carry a materia on this place of inventory." << std::endl;
+		std::cerr << "Sort of right place, but the Character '" << this->getName() << "' doesn't carry a materia at this place of the inventory." << std::endl;
 }
 
 void Character::use(int idx, ICharacter& target)
