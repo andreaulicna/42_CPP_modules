@@ -63,5 +63,7 @@ void	Brain::setIdea(std::string idea, int i)
 	if (i < 100)
 		this->_ideas[i] = idea;
 	else
-		std::cerr << "Sorry, the brain doesn't have the capacity for such a big idea." << std::endl;
+		std::cerr
+			<< "Sorry, the brain doesn't have the capacity for such a big idea."
+			<< std::endl;
 }

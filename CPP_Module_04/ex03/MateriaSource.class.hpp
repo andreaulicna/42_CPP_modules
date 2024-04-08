@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:30:54 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 18:35:14 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/08 18:46:13 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ public:
 	~MateriaSource(void);
 
 	// Other member
-	void learnMateria(AMateria*);
-	AMateria* createMateria(std::string const & type);
+	void		learnMateria(AMateria *materia);
+	AMateria*	createMateria(std::string const & type);
 
 private:
+	AMateria	*_learnInventory[4];
 
 };
 

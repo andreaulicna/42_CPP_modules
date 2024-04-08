@@ -6,12 +6,14 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:01:07 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/08 11:24:50 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/08 17:40:06 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHARACTER_CLASS_HPP
 # define CHARACTER_CLASS_HPP
+
+# define FLOOR_CAPACITY 100
 
 # include <iostream>
 # include "ICharacter.hpp"
@@ -47,7 +49,7 @@ private:
 	std::string	_name;
 	AMateria	*_inventory[4];
 
-	static AMateria	*_floor[100];
+	static AMateria	*_floor[FLOOR_CAPACITY];
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 18:43:11 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 22:31:47 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:34:04 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 // Default constructor
 AMateria::AMateria(void): _type("materia"), _isEquipped(false)
 {
-	std::cout << "Default constructor of the AMateria class called." << std::endl;
+	std::cout << "Default constructor of the AMateria class called."
+		<< std::endl;
 }
 
 // Constructor overloads
 AMateria::AMateria(std::string const & type): _type(type), _isEquipped(false)
 {
-	std::cout << "Constructor overload of the AMateria class called." << std::endl;
+	std::cout << "Constructor overload of the AMateria class called."
+		<< std::endl;
 }
 
 // Copy constructor
@@ -70,5 +72,6 @@ void	AMateria::setIsEquipped(bool state)
 
 void AMateria::use(ICharacter& target)
 {
-	std::cout << "AMateria: * being used on " << target.getName() << "*" << std::endl;
+	std::cout << "AMateria: * being used on " << target.getName() << "*"
+		<< std::endl;
 }

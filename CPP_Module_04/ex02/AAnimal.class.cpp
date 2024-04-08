@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:20:03 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 18:46:09 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:33:10 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 // Default constructor
 AAnimal::AAnimal(void)
 {
-	std::cout << "Default constructor of the AAnimal class called." << std::endl;
+	std::cout << "Default constructor of the AAnimal class called."
+		<< std::endl;
 	this->_type = "AAnimal";
 }
 

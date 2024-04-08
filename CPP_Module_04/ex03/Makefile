@@ -6,7 +6,7 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
-#    Updated: 2024/03/27 21:42:38 by aulicna          ###   ########.fr        #
+#    Updated: 2024/04/08 18:59:53 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME = materia
 SRC = main.cpp \
 		AMateria.class.cpp \
 		Ice.class.cpp \
+		Cure.class.cpp \
+		MateriaSource.class.cpp \
 		Character.class.cpp
 
 OBJ = $(SRC:.cpp=.o)

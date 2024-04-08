@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:48:55 by aulicna           #+#    #+#             */
-/*   Updated: 2024/03/27 11:51:38 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:32:46 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	Cat::getBrainContent(void) const
 {
 	std::cout << "___Cat's Brain___" << "\n";
 	for (int i = 0; i < 100 && this->_brain->getIdea(i).length() > 0; i++)
-		std::cout << "Idea " << i << ": '" << this->_brain->getIdea(i) << "' saved at " << this->_brain->getIdeaAddress(i) << std::endl;
+		std::cout << "Idea " << i << ": '" << this->_brain->getIdea(i)
+			<< "' saved at " << this->_brain->getIdeaAddress(i) << std::endl;
 }
 
 // Setters
