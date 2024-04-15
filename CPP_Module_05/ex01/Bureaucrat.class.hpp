@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 18:10:49 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/15 08:52:26 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/15 12:02:54 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 # include <iostream>
 # include <stdexcept>
+# include "Form.class.hpp"
 
 # define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
 
+class Form;
 class Bureaucrat
 {
 	public:
@@ -42,6 +44,8 @@ class Bureaucrat
 		Bureaucrat	operator ++ (int dummy);
 		Bureaucrat	&operator -- (void);
 		Bureaucrat	operator -- (int dummy);
+
+		void	signForm(Form &form);
 
 		class GradeTooLowException : public std::invalid_argument
 		{
