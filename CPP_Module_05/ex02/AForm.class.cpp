@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 08:51:44 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/17 14:35:23 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/17 19:29:40 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 AForm::AForm(void): _name("Default"), _isSigned(false), _gradeSign(1), _gradeExec(1)
 {
-	std::cout << "Default form created." << std::endl;
+//	std::cout << "Default form created." << std::endl;
 }
 
 AForm::AForm(const std::string name, int gradeSign, int gradeExec):
@@ -28,7 +28,7 @@ AForm::AForm(const std::string name, int gradeSign, int gradeExec):
 		throw(GradeTooHighException());
 	else if (gradeExec > LOWEST_GRADE)
 		throw(GradeTooLowException());
-	std::cout << "Special form created." << std::endl;
+//	std::cout << "Special form created." << std::endl;
 }
 
 AForm::AForm(const AForm& copy): _name(copy.getName()),
@@ -49,7 +49,7 @@ AForm	&AForm::operator = (const AForm &src)
 
 AForm::~AForm(void)
 {
-	std::cout << "AForm ." << std::endl;
+//	std::cout << "AForm destroyed." << std::endl;
 }
 
 const std::string	&AForm::getName() const
@@ -95,7 +95,7 @@ AForm::GradeTooLowException::GradeTooLowException() :
 
 const char* AForm::GradeTooLowException::what() const throw()
 {
-	return ("grade too low.");
+	return ("their grade is too low.");
 }
 
 AForm::GradeTooHighException::GradeTooHighException() :
@@ -106,7 +106,7 @@ AForm::GradeTooHighException::GradeTooHighException() :
 
 const char* AForm::GradeTooHighException::what() const throw()
 {
-	return ("grade too high.");
+	return ("their grade is too high.");
 }
 
 AForm::FormNotSignedException::FormNotSignedException() :
@@ -117,7 +117,7 @@ AForm::FormNotSignedException::FormNotSignedException() :
 
 const char* AForm::FormNotSignedException::what() const throw()
 {
-	return ("form not signed yet.");
+	return ("the form has not been signed yet.");
 }
 
 std::ostream	&operator<<(std::ostream &o, const AForm &instance)

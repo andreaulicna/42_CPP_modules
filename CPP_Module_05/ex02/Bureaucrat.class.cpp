@@ -14,7 +14,7 @@
 
 Bureaucrat::Bureaucrat(): _name("Paper clip"), _grade(150)
 {
-	std::cout << "Bureaucrat named '" << this->_name << "' wiht grade "<< this->_grade << " created." << std::endl;
+//	std::cout << "Bureaucrat named '" << this->_name << "' with grade "<< this->_grade << " created." << std::endl;
 }
 		
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name)
@@ -24,12 +24,12 @@ Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name)
 	else if (grade > LOWEST_GRADE)
 		throw(GradeTooLowException());
 	this->_grade = grade;
-	std::cout << "Bureaucrat named '" << this->_name << "' wiht grade "<< this->_grade << " created." << std::endl;
+//	std::cout << "Bureaucrat named '" << this->_name << "' wiht grade "<< this->_grade << " created." << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string name): _name(name), _grade(150)
 {
-	std::cout << "Bureaucrat named '" << this->_name << "' wiht grade "<< this->_grade << " created." << std::endl;
+//	std::cout << "Bureaucrat named '" << this->_name << "' wiht grade "<< this->_grade << " created." << std::endl;
 }
 
 Bureaucrat::Bureaucrat(int grade): _name("Paper clip")
@@ -39,7 +39,7 @@ Bureaucrat::Bureaucrat(int grade): _name("Paper clip")
 	else if (grade > LOWEST_GRADE)
 		throw(GradeTooLowException());
 	this->_grade = grade;
-	std::cout << "Bureaucrat named '" << this->_name << "' wiht grade "<< this->_grade << " created." << std::endl;
+//	std::cout << "Bureaucrat named '" << this->_name << "' wiht grade "<< this->_grade << " created." << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy): _name(copy.getName()), _grade(copy.getGrade())
@@ -57,7 +57,7 @@ Bureaucrat	&Bureaucrat::operator = (const Bureaucrat &src)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureaucrat named '" << this->_name << "' wiht grade "<< this->_grade << " destroyed." << std::endl;
+//	std::cout << "Bureaucrat named '" << this->_name << "' wiht grade "<< this->_grade << " destroyed." << std::endl;
 }
 
 const std::string	&Bureaucrat::getName() const
@@ -132,23 +132,44 @@ Bureaucrat	Bureaucrat::operator -- (int)
 	return (original);
 }
 
-void	Bureaucrat::signForm(Form &form)
+void	Bureaucrat::signForm(AForm &form)
 {
 	if (form.getIsSigned())
 	{
-		std::cout << "Bureaucrat '" << this->_name << "' couldn't sign form '" << form.getName() << "' becuase it has already been signed." << std::endl;
+		std::cout << "Bureaucrat '" << this->_name << "' couldn't sign form '"
+			<< form.getName() << "' becuase it has already been signed."
+			<< std::endl;
 		return ;
 	}
 	try
 	{
 		form.beSigned(*this);
-		std::cout << "Bureaucrat '" << this->_name << "' signed form '" << form.getName() << "'." << std::endl;
+		std::cout << "Bureaucrat '" << this->_name << "' signed form '"
+			<< form.getName() << "'." << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Bureaucrat '" << this->_name << "' couldn't sign form '" << form.getName() << "' because ";
+		std::cout << "Bureaucrat '" << this->_name << "' couldn't sign form '"
+			<< form.getName() << "' because ";
 		std::cerr << e.what() << std::endl;
 	}
+}
+
+void	Bureaucrat::executeForm(AForm &form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << "Bureaucrat '" << this->_name << "' executed the '"
+			<< form.getName() << "' form." << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Bureaucrat '" << this->_name
+			<< "' couldn't execute form '" << form.getName() << "' because ";
+		std::cerr << e.what() << std::endl;
+	}
+	
 }
 
 Bureaucrat::GradeTooLowException::GradeTooLowException() :
@@ -175,6 +196,7 @@ const char* Bureaucrat::GradeTooHighException::what() const throw()
 
 std::ostream& operator<<(std::ostream &o, const Bureaucrat &instance)
 {
-	o << "Bureaucrat '" << instance.getName() << "' with grade " << instance.getGrade() << ".";
+	o << "Bureaucrat '" << instance.getName() << "' with grade "
+		<< instance.getGrade() << ".";
 	return (o);
 }

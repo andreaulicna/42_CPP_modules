@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/15 12:53:30 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/15 15:37:59 by aulicna          ###   ########.fr       */
+/*   Created: 2024/04/17 18:05:22 by aulicna           #+#    #+#             */
+/*   Updated: 2024/04/17 19:17:34 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,27 @@
 # define SHRUBBERYCREATIONFORM_CLASS_HPP
 
 # include "AForm.class.hpp"
+# include <fstream>
 
 class ShrubberyCreationForm : public AForm
 {
-public:
-	ShrubberyCreationForm(void);
-	ShrubberyCreationForm(const ShrubberyCreationForm& copy);
-	ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &src);
-	~ShrubberyCreationForm(void);
-
-	void	execute(Bureaucrat const &executor);
-
-private:
-
+	public:
+		ShrubberyCreationForm(void);
+		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm(const ShrubberyCreationForm& copy);
+		ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &src);
+		~ShrubberyCreationForm(void);
+	
+		void	execute(Bureaucrat const &executor);
+		
+		class outfileOpenException : public std::runtime_error
+		{
+			public:
+				outfileOpenException();
+				const char*		what() const throw();
+		};
+	private:
+		std::string	_target;
 };
 
 #endif

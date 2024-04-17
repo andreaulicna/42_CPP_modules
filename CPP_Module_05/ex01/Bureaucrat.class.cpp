@@ -14,7 +14,7 @@
 
 Bureaucrat::Bureaucrat(): _name("Paper clip"), _grade(150)
 {
-	std::cout << "Bureaucrat named '" << this->_name << "' wiht grade "<< this->_grade << " created." << std::endl;
+	std::cout << "Bureaucrat named '" << this->_name << "' with grade "<< this->_grade << " created." << std::endl;
 }
 		
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name)

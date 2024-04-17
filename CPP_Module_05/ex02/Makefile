@@ -6,15 +6,18 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
-#    Updated: 2024/04/15 10:56:55 by aulicna          ###   ########.fr        #
+#    Updated: 2024/04/17 19:21:23 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bureaucrat
+NAME = form_upgrade
 
 SRC = main.cpp \
 	Bureaucrat.class.cpp \
-	Form.class.cpp
+	AForm.class.cpp \
+	PresidentialPardonForm.class.cpp \
+	RobotomyRequestForm.class.cpp \
+	ShrubberyCreationForm.class.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

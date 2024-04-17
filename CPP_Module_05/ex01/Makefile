@@ -6,11 +6,11 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
-#    Updated: 2024/04/15 10:56:55 by aulicna          ###   ########.fr        #
+#    Updated: 2024/04/17 15:45:27 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bureaucrat
+NAME = form
 
 SRC = main.cpp \
 	Bureaucrat.class.cpp \

@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 18:16:55 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/14 23:24:03 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/17 16:19:20 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Bureaucrat::Bureaucrat(): _name("Paper clip"), _grade(150)
 {
-	std::cout << "Bureaucrat named '" << this->_name << "' wiht grade "<< this->_grade << " created." << std::endl;
+	std::cout << "Bureaucrat named '" << this->_name << "' with grade "<< this->_grade << " created." << std::endl;
 }
 		
 Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name)
