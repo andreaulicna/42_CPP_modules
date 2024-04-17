@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 08:51:44 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/15 12:21:10 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/17 14:01:45 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ Form	&Form::operator = (const Form &src)
 
 Form::~Form(void)
 {
-	std::cout << "Form deleted." << std::endl;
+	std::cout << "Form destroyed." << std::endl;
 }
 
 const std::string	&Form::getName() const

@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 08:51:44 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/15 12:47:33 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/17 14:35:23 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ AForm	&AForm::operator = (const AForm &src)
 
 AForm::~AForm(void)
 {
-	std::cout << "AForm deleted." << std::endl;
+	std::cout << "AForm ." << std::endl;
 }
 
 const std::string	&AForm::getName() const
@@ -79,6 +79,14 @@ void	AForm::beSigned(Bureaucrat &bureaucrat)
 	this->_isSigned = true;
 }
 
+void	AForm::checkIfExecutable(Bureaucrat const &executor) const
+{
+	if (this->_isSigned == false)
+		throw(FormNotSignedException());
+	else if (this->getGradeExec() < executor.getGrade())
+		throw(GradeTooLowException());
+}
+
 AForm::GradeTooLowException::GradeTooLowException() :
 	std::invalid_argument("Grade is too low.")
 {
@@ -99,6 +107,17 @@ AForm::GradeTooHighException::GradeTooHighException() :
 const char* AForm::GradeTooHighException::what() const throw()
 {
 	return ("grade too high.");
+}
+
+AForm::FormNotSignedException::FormNotSignedException() :
+	std::invalid_argument("Form hasn't been signed yet.")
+{
+	return ;
+}
+
+const char* AForm::FormNotSignedException::what() const throw()
+{
+	return ("form not signed yet.");
 }
 
 std::ostream	&operator<<(std::ostream &o, const AForm &instance)
