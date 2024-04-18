@@ -6,11 +6,11 @@
 #    By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 11:40:54 by aulicna           #+#    #+#              #
-#    Updated: 2024/04/18 12:22:04 by aulicna          ###   ########.fr        #
+#    Updated: 2024/04/18 20:30:00 by aulicna          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bureaucrat
+NAME = convertor
 
 SRC = main.cpp \
 	ScalarConverter.class.cpp

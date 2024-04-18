@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 12:22:12 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/18 14:47:22 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/18 22:20:54 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,29 @@
 # define SCALARCONVERTER_CLASS_HPP
 
 # include <iostream>
+# include <sstream>
+# include <string>
+# include <cstdlib>
+# include <limits>
 
-enum	type
+enum	Type
 {
-	CHAR = 1,
+	CHAR,
 	INT,
 	FLOAT,
 	DOUBLE,
 	PSEUDO,
-	IMPOSSIBLE
+	WRONG
 };
+
+struct Scalars
+{
+	char	c;
+	int		i;
+	float	f;
+	double	d;
+};
+
 
 class ScalarConverter
 {
