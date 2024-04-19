@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 12:22:54 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/18 22:24:51 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/19 11:59:21 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,33 @@ void	displayLiteral(const std::string literal, Type type, Scalars *scalarValues)
 	(void) literal;
 	(void) type;
 	(void) scalarValues;
-	std::cout << "Hej" << std::endl;
+	switch(type)
+	{
+		case CHAR:
+		{
+			std::cout << "__Detect type CHAR__" << std::endl;
+			if (std::isprint(scalarValues->c))
+				std::cout << "char: " << scalarValues->c << std::endl;
+			else if (0 <= scalarValues->c && scalarValues->c <= 127)
+				std::cout << "char: Non displayable" << std::endl;
+			std::cout << "int: " << scalarValues->i << std::endl;
+			std::cout << "float: " << scalarValues->f << "f" << std::endl;
+			std::cout << "double: " << scalarValues->d << std::endl;
+			break ;
+		}
+		case INT:
+		{
+			std::cout << "__Detect type INT__" << std::endl;
+			if (std::isprint(scalarValues->c))
+				std::cout << "char: " << scalarValues->c << std::endl;
+			else if (0 <= scalarValues->c && scalarValues->c <= 127)
+				std::cout << "char: Non displayable" << std::endl;
+			else
+				std::cout << "char: impossible" << std::endl;
+		}
+		default:
+			std::cout << "Hej" << std::endl;
+	}
 }
 
 void	ScalarConverter::convert(std::string literal)
