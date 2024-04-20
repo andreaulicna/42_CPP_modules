@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 20:02:33 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/20 21:50:21 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/20 22:04:40 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ Serializer::~Serializer(void)
  * a uintptr_t. This is useful for storing the pointer in a format that
  * can be safely written to disk.
  * 
+ * reinterpret_cast allows us to read the passed memory in a different way.
+ * We give it a memory location and ask it to read that memory as if it was what
+ * we asked it to. This is why it can only be used with pointers and references.
+ * 
  * @param	ptr			Data pointer to serialize
  * @return	uintptr_t	serialized pointer as a uintptr_t
  */
@@ -80,6 +84,10 @@ uintptr_t	Serializer::serialize(Data* ptr)
  * This function takes a serialized Data pointer (in the form of a uintptr_t)
  * and converts it back into a Data pointer. This is useful for reading
  * a serialized pointer from disk and converting it back into a usable form.
+ * 
+ * reinterpret_cast allows us to read the passed memory in a different way.
+ * We give it a memory location and ask it to read that memory as if it was what
+ * we asked it to. This is why it can only be used with pointers and references.
  * 
  * @param	raw		uintptr_t to deserialize
  * @return	Data*	deserialized pointer as a Data pointer
