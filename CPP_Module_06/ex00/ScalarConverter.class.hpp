@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 12:22:12 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/20 18:18:15 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/20 20:01:06 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ class ScalarConverter
 {
 	public:
 		static void	convert(std::string literal);
+
 	private:
 		ScalarConverter(void);
 		ScalarConverter(const ScalarConverter& copy);
