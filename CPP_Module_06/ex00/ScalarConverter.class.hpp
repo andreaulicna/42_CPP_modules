@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 12:22:12 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/19 10:56:02 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/20 18:18:15 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <cstdlib>
 # include <limits>
 # include <cctype>
+# include <iomanip>
+# include <cerrno>
+
 
 enum	Type
 {
@@ -32,7 +35,7 @@ enum	Type
 
 struct Scalars
 {
-	char	c;
+	unsigned char	c;
 	int		i;
 	float	f;
 	double	d;

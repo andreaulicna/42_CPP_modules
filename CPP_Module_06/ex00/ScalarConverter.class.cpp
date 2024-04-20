@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 12:22:54 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/19 11:59:21 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/20 19:12:28 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,38 +40,47 @@ static bool isChar(const std::string &literal)
 
 static bool isInteger(const std::string &literal)
 {
-	std::istringstream	iss;
+	std::istringstream	iss(literal);
 	int					value;
-
-	iss.str(literal);
-	iss >> value;
-	return (iss.eof() && !iss.fail());
-}
-
-static bool isFloat(const std::string &literal)
-{
-	std::istringstream iss(literal);
-	float value;
-	char ch;
+	char				ch;
 
 	iss >> value;
 	if (iss.fail())
 		return false;
 	iss >> ch;
-	return (ch == 'f' || ch == 'F');
+	return (iss.eof() || std::isspace(ch));
+}
+
+static bool isFloat(const std::string &literal)
+{
+	std::istringstream	iss(literal);
+	float				value;
+	char				ch;
+
+	iss >> value;
+	if (iss.fail())
+		return false;
+	iss >> ch;
+	if (ch != 'f' && ch != 'F')
+		return false;
+	iss >> ch;
+	return (iss.eof() || std::isspace(ch));
 }
 
 static bool isDouble(const std::string &literal)
 {
-	std::istringstream	iss;
+	std::istringstream	iss(literal);
 	double				value;
+	char				ch;
 
-	iss.str(literal);
 	iss >> value;
-	return (iss.eof() && !iss.fail());
+	if (iss.fail())
+		return false;
+	iss >> ch;
+	return (iss.eof() || std::isspace(ch));
 }
 
-Type	detectType(const std::string &literal)
+static Type	detectType(const std::string &literal)
 {
 	if (literal == "-inff" || literal == "+inff" || literal == "nanf"
 		|| literal == "-inf" || literal == "+inf" || literal == "nan")
@@ -87,39 +96,39 @@ Type	detectType(const std::string &literal)
 	return (WRONG);
 }
 
-void	convertFromChar(const std::string &literal, Scalars *values)
+static void	convertFromChar(const std::string &literal, Scalars *values)
 {
-	values->c = static_cast<char>(literal[0]);
+	values->c = static_cast<unsigned char>(literal[0]);
 	values->i = static_cast<int>(values->c);
 	values->f = static_cast<float>(values->c);
 	values->d = static_cast<double>(values->c);
 }
 
-void	convertFromInt(const std::string &literal, Scalars *values)
+static void	convertFromInt(const std::string &literal, Scalars *values)
 {
 	values->i = std::atoi(literal.c_str());
-	values->c = static_cast<char>(values->i);
+	values->c = static_cast<unsigned char>(values->i);
 	values->f = static_cast<float>(values->i);
 	values->d = static_cast<double>(values->i);
 }
 
-void	convertFromFloat(const std::string &literal, Scalars *values)
+static void	convertFromFloat(const std::string &literal, Scalars *values)
 {
 	values->f = std::strtof(literal.c_str(), NULL);
-	values->c = static_cast<char>(values->f);
+	values->c = static_cast<unsigned char>(values->f);
 	values->i = static_cast<int>(values->f);
 	values->d = static_cast<double>(values->f);
 }
 
-void	convertFromDouble(const std::string &literal, Scalars *values)
+static void	convertFromDouble(const std::string &literal, Scalars *values)
 {
 	values->d = std::strtod(literal.c_str(), NULL);
-	values->c = static_cast<char>(values->d);
+	values->c = static_cast<unsigned char>(values->d);
 	values->i = static_cast<int>(values->d);
 	values->f = static_cast<float>(values->d);
 }
 
-void	displayPseudoLiteral(const std::string &literal, Scalars *values)
+static void	displayPseudoLiteral(const std::string &literal, Scalars *values)
 {
 	if (literal == "-inf" || literal == "-inff")
 	{
@@ -142,45 +151,86 @@ void	displayPseudoLiteral(const std::string &literal, Scalars *values)
 	std::cout << "double: " << values->d << std::endl;
 }
 
-void	displayLiteral(const std::string literal, Type type, Scalars *scalarValues)
+static void	displayLineWithPrecision(std::string literal, Type type, Scalars *scalarValues)
 {
-	(void) literal;
-	(void) type;
-	(void) scalarValues;
-	switch(type)
+	errno = 0;
+	if (type == FLOAT)
 	{
-		case CHAR:
-		{
-			std::cout << "__Detect type CHAR__" << std::endl;
-			if (std::isprint(scalarValues->c))
-				std::cout << "char: " << scalarValues->c << std::endl;
-			else if (0 <= scalarValues->c && scalarValues->c <= 127)
-				std::cout << "char: Non displayable" << std::endl;
-			std::cout << "int: " << scalarValues->i << std::endl;
-			std::cout << "float: " << scalarValues->f << "f" << std::endl;
-			std::cout << "double: " << scalarValues->d << std::endl;
-			break ;
-		}
-		case INT:
-		{
-			std::cout << "__Detect type INT__" << std::endl;
-			if (std::isprint(scalarValues->c))
-				std::cout << "char: " << scalarValues->c << std::endl;
-			else if (0 <= scalarValues->c && scalarValues->c <= 127)
-				std::cout << "char: Non displayable" << std::endl;
-			else
-				std::cout << "char: impossible" << std::endl;
-		}
-		default:
-			std::cout << "Hej" << std::endl;
+		std::strtof(literal.c_str(), NULL);
+		if (errno)
+			std::cout << "float: impossible" << std::endl;
+		else
+			std::cout << "float: " << std::fixed << std::setprecision(1)
+				<< scalarValues->f << "f" << std::endl;
 	}
+	else if (type == DOUBLE)
+	{
+		std::strtod(literal.c_str(), NULL);
+		if (errno)
+			std::cout << "double: impossible" << std::endl;
+		else
+		std::cout << "double: " << std::fixed << std::setprecision(1)
+			<< scalarValues->d << std::endl;
+	}
+}
+
+static void	displayIntLine(std::string literal, Type type, Scalars *scalarValues)
+{
+	long	check; 
+
+	check = std::strtol(literal.c_str(), NULL, 10);
+	if (check < std::numeric_limits<int>::min() || check > std::numeric_limits<int>::max())
+		std::cout << "int: impossible" << std::endl;
+	else if (type == FLOAT && 
+		(static_cast<long long>(scalarValues->f) < std::numeric_limits<int>::min()
+		|| static_cast<long long>(scalarValues->f) > std::numeric_limits<int>::max()))
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << scalarValues->i << std::endl;
+}
+
+static void	displayCharLine(Scalars *scalarValues)
+{
+	if (scalarValues->i >= 0 && scalarValues->i <= 31)
+		std::cout << "char: Non displayable" << std::endl;
+	else if (0 > scalarValues->i || scalarValues->i > 127)
+		std::cout << "char: impossible" << std::endl;
+	else
+		std::cout << "char: " << scalarValues->c << std::endl;
+}
+
+static void	displayLiteral(const std::string literal, Type type, Scalars *scalarValues)
+{
+	if(type ==  CHAR)
+	{
+		std::cout << "__Detected type CHAR__" << std::endl;
+		if (std::isprint(scalarValues->c))
+			std::cout << "char: " << scalarValues->c << std::endl;
+		else if (scalarValues->c <= 127)
+			std::cout << "char: Non displayable" << std::endl;
+		std::cout << "int: " << scalarValues->i << std::endl;
+		displayLineWithPrecision(literal, FLOAT, scalarValues);
+		displayLineWithPrecision(literal, DOUBLE, scalarValues);
+		return ;
+	}
+	else if (type == INT)
+		std::cout << "__Detected type INT__" << std::endl;
+	else if (type == FLOAT)
+		std::cout << "__Detected type FLOAT__" << std::endl;
+	else if (type == DOUBLE)
+		std::cout << "__Detected type DOUBLE__" << std::endl;
+	displayCharLine(scalarValues);
+	displayIntLine(literal, type, scalarValues);
+	displayLineWithPrecision(literal, FLOAT, scalarValues);
+	displayLineWithPrecision(literal, DOUBLE, scalarValues);
 }
 
 void	ScalarConverter::convert(std::string literal)
 {
 	Type	literalType;
 	Scalars	scalarValues;
-	void	(*convertFunctions[4])(const std::string&, Scalars*) = {&convertFromChar, &convertFromInt, &convertFromFloat, &convertFromDouble};
+	void	(*convertFunctions[4])(const std::string&, Scalars*)
+		= {&convertFromChar, &convertFromInt, &convertFromFloat, &convertFromDouble};
 
 	literalType = detectType(literal);
 	if (literalType == WRONG)
