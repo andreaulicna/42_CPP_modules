@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 13:07:22 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/24 19:36:54 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/26 13:01:38 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ std::string intDateToStrDate(int dateInt)
 
 static void valideDate(const std::string &dateToValidate, const int minDate)
 {
-	int	year;
-	int	month;
-	int	day;
-	int	minYear;
+	int					year;
+	int					month;
+	int					day;
+	int					minYear;
 	std::stringstream	ss;
 	std::string			minYearStr;
 	std::string			dateFinal;
@@ -65,7 +65,7 @@ static void valideDate(const std::string &dateToValidate, const int minDate)
 	if (dateToValidate.size() == 0)
 		throw(std::invalid_argument("Date is empty. Please use YYYY-MM-DD format."));
 	if (dateToValidate.find_first_not_of("0123456789-") != std::string::npos)
-		throw(std::invalid_argument("Date contains invalid characters. Please only numeric characters or '-'. => " + dateToValidate));
+		throw(std::invalid_argument("Date contains invalid characters. Please use only numeric characters or '-'. => " + dateToValidate));
 	if (dateToValidate[4] != '-' || dateToValidate[7] != '-' || dateToValidate.size() != 10)
 		throw(std::invalid_argument("Date is wrongly formated. Please use YYYY-MM-DD format. => " + dateToValidate));
 	year = std::atoi(dateToValidate.substr(0, 4).c_str());
@@ -100,17 +100,69 @@ static void valideDate(const std::string &dateToValidate, const int minDate)
 		throw(std::invalid_argument("The earliest date in the database is " + intDateToStrDate(minDate) + ". Please don't ask for an earlier one. => " + dateToValidate));	
 }
 
+static void	validateValue(const std::string &valueToValidate)
+{
+	std::istringstream	iss;
+	double				valueAsDouble;
+
+	if (valueToValidate.size() == 0)
+		throw(std::invalid_argument("Value is empty. Please provide a float or integer between 0 and 1000."));
+	if (valueToValidate.find_first_not_of("0123456789.-") != std::string::npos)
+		throw(std::invalid_argument("Value contains invalid characters. Please use only numeric characters or '.'. => " + valueToValidate));
+	if (valueToValidate.find_first_of(".") != valueToValidate.find_last_of(".")
+		|| valueToValidate.find_first_of("-") != valueToValidate.find_last_of("-"))
+		throw(std::invalid_argument("Invalid value format. Please use only numeric characters or one '.' to indicate decimal point. => " + valueToValidate));
+	iss.str(valueToValidate);
+	iss >> valueAsDouble;
+	if (iss.fail())
+		throw(std::invalid_argument("Value is not float nor integer. => " + valueToValidate));
+	if (valueAsDouble < 0)
+			throw(std::invalid_argument("Integer value out of range: value too low. The value must be between 0 and 1000. => " + valueToValidate));
+	if (valueAsDouble > 1000)
+		throw(std::invalid_argument("Integer value out of range: value too large. The value must be between 0 and 1000. => " + valueToValidate));
+}
+
+static int	strDateToIntDate(const std::string &rawDate)
+{
+	std::string	newDate;
+
+	for(size_t i = 0; i < rawDate.size(); i++)
+	{
+		if (rawDate[i] != '-')
+			newDate += rawDate[i];
+	}
+	return (std::atoi(newDate.c_str()));
+}
+
+void	BitcoinExchange::finalPrinting(const std::string &date, const std::string &value)
+{
+	std::map<int, double>::iterator it;
+	double							result;
+	std::stringstream				ss;
+	std::string						resultAsStr;
+
+	this->_inputDateAsInt = strDateToIntDate(date);
+	this->_inputValueAsInt = std::strtod(value.c_str(), NULL);
+	it = this->_database.lower_bound(this->_inputDateAsInt);
+	if (it != this->_database.begin() && (it == this->_database.end() || it->first != this->_inputDateAsInt))
+		it--;
+	result = this->_inputDateAsInt * it->second;
+	ss << std::fixed << result;
+	ss >> resultAsStr;
+	std::cout << date << " => " << value << " = " << resultAsStr << std::endl;
+}
+
 void	BitcoinExchange::processInput(const std::string &pathToInput)
 {
 	std::ifstream		inputFile(pathToInput.c_str());
 	std::string			line;
 	std::istringstream	iss;
-	std::string			dateToValidate;
 
 	if (!inputFile)
 		throw(std::invalid_argument("Error: Unable to open the input file: " + pathToInput));
 	std::getline(inputFile, line);
-	if (removeSpaces(line) != "date|value") {
+	if (removeSpaces(line) != "date|value")
+	{
 		std::cerr << "Warning: Invalid header in the input file. Processing the first line too." << std::endl;
 		inputFile.clear(); // clear error flags
 		inputFile.seekg(0, std::ios::beg); // reset getline to the beginning
@@ -124,10 +176,16 @@ void	BitcoinExchange::processInput(const std::string &pathToInput)
 			if (line.empty() || line.find_first_not_of(" \t\v\n\r\f") == std::string::npos)
 				throw(std::runtime_error("Line with no data to process."));
 			if (removeSpaces(line) == "|" || line.find_first_of("|") == std::string::npos)
-				throw(std::runtime_error("Wrongly formatted and/or incomplete line. Please use 'YYYY-MM-DD | value' format."));
-			std::getline(iss, dateToValidate, '|');
-			dateToValidate.erase(std::remove_if(dateToValidate.begin(), dateToValidate.end(), ::isspace), dateToValidate.end());
-			valideDate(dateToValidate, this->_database.begin()->first);
+				throw(std::runtime_error("Wrongly formatted and/or incomplete line. Please use 'YYYY-MM-DD | value' format. => " + line));
+			std::getline(iss, this->_inputDate, '|');
+			this->_inputDate.erase(std::remove_if(this->_inputDate.begin(), this->_inputDate.end(), ::isspace), this->_inputDate.end());
+			valideDate(this->_inputDate, this->_database.begin()->first);
+			std::getline(iss, this->_inputValue);
+			this->_inputValue.erase(std::remove_if(this->_inputValue.begin(), this->_inputValue.end(), ::isspace), this->_inputValue.end());
+			validateValue(this->_inputValue);
+
+			// Final printing
+			finalPrinting(this->_inputDate, this->_inputValue);
 		}
 		catch(const std::exception& e)
 		{
@@ -154,15 +212,7 @@ void	BitcoinExchange::loadDatabase(const std::string &pathToDatabase)
 		if (line == "date,exchange_rate")
 			continue ;
 		if (std::getline(iss, rawDate, ',') && (iss >> value))
-		{
-			std::string		date;
-			for(size_t i = 0; i < rawDate.size(); i++)
-			{
-				if (rawDate[i] != '-')
-					date += rawDate[i];
-			}
-			key = std::atoi(date.c_str());
-		}
+			key = strDateToIntDate(rawDate);
 		else
 		{
 			std::cerr << "Error: Cannot read line: " << line << std::endl;

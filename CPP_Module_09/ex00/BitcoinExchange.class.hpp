@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 13:07:10 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/24 18:30:31 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/26 12:32:31 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,19 @@ class BitcoinExchange
 		BitcoinExchange	&operator=(const BitcoinExchange &src);
 		~BitcoinExchange(void);
 
-		void	loadDatabase(const std::string &pathToDatabase);
-		void	printDatabase(void) const;
-		void	processInput(const std::string &pathToInput);
 
  	private:
 		BitcoinExchange(void);
 		std::map<int, double>	_database;
+		std::string				_inputDate;
+		std::string				_inputValue;
+		int						_inputDateAsInt;
+		double					_inputValueAsInt;
 
-		void	loadDatabase(std::ifstream &database);
-
-
+		void	loadDatabase(const std::string &pathToDatabase);
+		void	printDatabase(void) const;
+		void	processInput(const std::string &pathToInput);
+		void	finalPrinting(const std::string &date, const std::string &value);
 };
 
 #endif
