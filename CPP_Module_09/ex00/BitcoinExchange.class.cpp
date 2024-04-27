@@ -19,12 +19,23 @@ BitcoinExchange::BitcoinExchange(void)
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& copy)
 {
-	*this = copy;
+	this->_database = copy._database;
+	this->_inputDate = copy._inputDate;
+	this->_inputValue = copy._inputValue;
+	this->_inputDateAsInt = copy._inputDateAsInt;
+	this->_inputValueAsDouble = copy._inputValueAsDouble;
 }
 
-BitcoinExchange	&BitcoinExchange::operator = (const BitcoinExchange &src)
+BitcoinExchange	&BitcoinExchange::operator=(const BitcoinExchange &src)
 {
-	(void) src;
+	if (this != &src)
+	{
+		this->_database = src._database;
+		this->_inputDate = src._inputDate;
+		this->_inputValue = src._inputValue;
+		this->_inputDateAsInt = src._inputDateAsInt;
+		this->_inputValueAsDouble = src._inputValueAsDouble;
+	}
 	return (*this);
 }
 

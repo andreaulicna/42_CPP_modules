@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:55:52 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/27 10:47:36 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/27 11:01:43 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ RPN::RPN(void)
 
 RPN::RPN(const RPN& copy)
 {
-	*this = copy;
+	this->_stack = copy._stack;
 }
 
-RPN	&RPN::operator = (const RPN &src)
+RPN &RPN::operator=(const RPN &src)
 {
-	(void) src;
+	if (this != &src)
+		this->_stack = src._stack;
 	return (*this);
 }
 
