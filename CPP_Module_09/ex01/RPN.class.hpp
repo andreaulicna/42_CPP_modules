@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:56:00 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/26 21:51:20 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/27 10:46:33 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class RPN
 		RPN(void);
 		std::stack<int>	_stack;
 
-		void	printStack(void) const;
+		// void	printStack(void) const;
 };
 
 #endif
