@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:03:09 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/27 14:02:33 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/27 18:20:15 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <sstream>
 # include <algorithm>
 
-typedef std::vector<unsigned int> vect_uint_t;
-
 class PmergeMe
 {
 	public:
@@ -32,11 +30,68 @@ class PmergeMe
 	private:
 		PmergeMe(void);
 		std::list<unsigned int>		_list;
-		std::list<unsigned int>		_orderedList;
+		std::list<unsigned int>		_sortedList;
 		std::vector<unsigned int>	_vector;
-		std::vector<unsigned int>	_orderedVector;
+		std::vector<unsigned int>	_sortedVector;
+
+		void			_sort(std::list<unsigned int> &list);
+//		void			_sort(std::vector<unsigned int> &vector);
+		unsigned int	_jacobsthalNumber(unsigned int iJacobsthal);
+		void			_insertIntoList(std::list< std::pair<unsigned int, unsigned int> > pairsList,
+			std::list<unsigned int> insertionSequence, bool odd, unsigned int struggler);
+
+		template <typename T>
+		void	printContainer(const T &container, const std::string containerName)
+		{
+			std::cout << containerName << " ";
+			for (typename T::const_iterator it = container.begin(); it != container.end(); ++it)
+				std::cout << *it << ' ';
+			std::cout << std::endl;
+		}
+		template <typename Container>
+		Container	_generateJacobsthalSequence(unsigned int size)
+		{
+			Container	sequenceJacobsthal;
+			unsigned int	iJacobsthal;
+
+			iJacobsthal = 3;
+			while (size > _jacobsthalNumber(iJacobsthal))
+			{
+				sequenceJacobsthal.push_back(_jacobsthalNumber(iJacobsthal));
+				iJacobsthal++;
+			}
+			sequenceJacobsthal.push_back(_jacobsthalNumber(iJacobsthal));
+			return (sequenceJacobsthal);
+		}
+		template <typename Container>
+		Container _generateInsertionSequence(Container jacobsthalSequence)
+		{
+			Container		insertionSequence;
+			unsigned int	currentValue;
+			unsigned int	previousValue;
+
+			previousValue = 1;
+			for(typename Container::iterator it = jacobsthalSequence.begin(); it != jacobsthalSequence.end(); ++it)
+			{
+				currentValue = *it;
+				insertionSequence.push_back(currentValue);
+				for (size_t j = 1; currentValue - j > previousValue; j++)
+					insertionSequence.push_back(currentValue - j);
+				previousValue = currentValue;
+			}
+			return (insertionSequence);
+		}
+		struct compare
+		{
+			bool operator()(const std::pair<unsigned int, unsigned int>& a, const std::pair<unsigned int, unsigned int>& b)
+			{
+				return (a.first < b.first);
+			}
+		};
 };
 
+std::ostream	&operator << (std::ostream &o, std::list<unsigned int> &list);
+std::ostream	&operator << (std::ostream &o, std::list< std::pair<unsigned int, unsigned int> > &list);
 std::ostream	&operator << (std::ostream &o, std::vector<unsigned int> &vector);
 
 #endif

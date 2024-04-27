@@ -162,7 +162,7 @@ static void	validateValue(const std::string &valueToValidate)
 		throw(std::invalid_argument("Integer value out of range: value too large. The value must be between 0 and 1000. => " + valueToValidate));
 }
 
-void	BitcoinExchange::loadDatabase(const std::string &pathToDatabase)
+void	BitcoinExchange::_loadDatabase(const std::string &pathToDatabase)
 {
 	std::ifstream		databaseFile(pathToDatabase.c_str());
 	std::string			line;
@@ -191,7 +191,7 @@ void	BitcoinExchange::loadDatabase(const std::string &pathToDatabase)
 	databaseFile.close();
 }
 
-void	BitcoinExchange::processInput(const std::string &pathToInput)
+void	BitcoinExchange::_processInput(const std::string &pathToInput)
 {
 	std::ifstream		inputFile(pathToInput.c_str());
 	std::string			line;
@@ -224,7 +224,7 @@ void	BitcoinExchange::processInput(const std::string &pathToInput)
 			std::getline(iss, this->_inputValue);
 			this->_inputValue.erase(std::remove_if(this->_inputValue.begin(), this->_inputValue.end(), ::isspace), this->_inputValue.end());
 			validateValue(this->_inputValue);
-			printResults(this->_inputDate, this->_inputValue);
+			_printResults(this->_inputDate, this->_inputValue);
 		}
 		catch(const std::exception& e)
 		{
@@ -233,7 +233,7 @@ void	BitcoinExchange::processInput(const std::string &pathToInput)
 	}
 }
 
-void	BitcoinExchange::printResults(const std::string &date, const std::string &value)
+void	BitcoinExchange::_printResults(const std::string &date, const std::string &value)
 {
 	std::map<int, double>::iterator it;
 	double							result;
@@ -248,7 +248,7 @@ void	BitcoinExchange::printResults(const std::string &date, const std::string &v
 }
 
 // For debug purposes
-//void	BitcoinExchange::printDatabase(void) const
+//void	BitcoinExchange::_printDatabase(void) const
 //{
 //	for(std::map<int, double>::const_iterator it = this->_database.begin(); it != this->_database.end(); ++it)
 //	{
@@ -262,6 +262,6 @@ void	BitcoinExchange::printResults(const std::string &date, const std::string &v
 
 BitcoinExchange::BitcoinExchange(const std::string &pathToDatabase, const std::string &pathToInput)
 {
-	loadDatabase(pathToDatabase);
-	processInput(pathToInput);
+	_loadDatabase(pathToDatabase);
+	_processInput(pathToInput);
 }

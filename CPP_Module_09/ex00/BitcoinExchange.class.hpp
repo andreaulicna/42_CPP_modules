@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 13:07:10 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/26 16:18:20 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/27 16:29:40 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ class BitcoinExchange
 		int						_inputDateAsInt;
 		double					_inputValueAsDouble;
 
-		void	loadDatabase(const std::string &pathToDatabase);
-		//void	printDatabase(void) const;
-		void	processInput(const std::string &pathToInput);
-		void	printResults(const std::string &date, const std::string &value);
+		void	_loadDatabase(const std::string &pathToDatabase);
+		//void	_printDatabase(void) const;
+		void	_processInput(const std::string &pathToInput);
+		void	_printResults(const std::string &date, const std::string &value);
 };
 
 #endif
