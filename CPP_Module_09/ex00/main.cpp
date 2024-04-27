@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 13:20:57 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/24 10:55:05 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/27 13:05:27 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 		}
 	}
 	else
-		std::cout << "Error: Wrong Input.\n"
+		std::cerr << "Error: Wrong number of program arguments.\n"
 			<< "Usage: ./btc input_file_name" << std::endl;
 	return (0);
 }

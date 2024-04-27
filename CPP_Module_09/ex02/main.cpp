@@ -5,28 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 17:01:10 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/27 13:05:40 by aulicna          ###   ########.fr       */
+/*   Created: 2024/04/27 12:38:14 by aulicna           #+#    #+#             */
+/*   Updated: 2024/04/27 13:58:55 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RPN.class.hpp"
+#include "PmergeMe.class.hpp"
 
 int	main(int argc, char **argv)
 {
-	if (argc == 2)
+	if (argc > 1)
 	{
 		try
 		{
-			RPN	rpn(argv[1]);
+			PmergeMe pmergeme(argc, argv);
 		}
 		catch(const std::exception& e)
 		{
-			std::cout << "Error: " << e.what() << '\n';
+			std::cerr << e.what() << '\n';
 		}
 	}
 	else
+	{
 		std::cerr << "Error: Wrong number of program arguments.\n"
-			<< "Usage: ./RPN \"number number operation\"" << std::endl;
+			<< "Usage: ./PmergeMe num num num..." << std::endl;
+	}
+	
 	return (0);
 }
