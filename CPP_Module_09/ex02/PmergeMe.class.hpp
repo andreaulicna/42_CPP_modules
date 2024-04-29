@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:03:09 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/27 18:20:15 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/29 13:02:55 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,14 @@ class PmergeMe
 		std::vector<unsigned int>	_sortedVector;
 
 		void			_sort(std::list<unsigned int> &list);
-//		void			_sort(std::vector<unsigned int> &vector);
+		void			_sort(std::vector<unsigned int> &vector);
+		std::list< std::pair<unsigned int, unsigned int> >	_makeAndSortPairsList(std::list<unsigned int> &list);
+		std::vector< std::pair<unsigned int, unsigned int> >	_makeAndSortPairsVector(std::vector<unsigned int> &vector);
 		unsigned int	_jacobsthalNumber(unsigned int iJacobsthal);
 		void			_insertIntoList(std::list< std::pair<unsigned int, unsigned int> > pairsList,
 			std::list<unsigned int> insertionSequence, bool odd, unsigned int struggler);
+		void			_insertIntoVector(std::vector< std::pair<unsigned int, unsigned int> > pairsVector,
+									   std::vector<unsigned int> insertionSequence, bool odd, unsigned int struggler);
 
 		template <typename T>
 		void	printContainer(const T &container, const std::string containerName)
@@ -93,5 +97,6 @@ class PmergeMe
 std::ostream	&operator << (std::ostream &o, std::list<unsigned int> &list);
 std::ostream	&operator << (std::ostream &o, std::list< std::pair<unsigned int, unsigned int> > &list);
 std::ostream	&operator << (std::ostream &o, std::vector<unsigned int> &vector);
+std::ostream	&operator << (std::ostream &o, std::vector< std::pair<unsigned int, unsigned int> > &vector);
 
 #endif
