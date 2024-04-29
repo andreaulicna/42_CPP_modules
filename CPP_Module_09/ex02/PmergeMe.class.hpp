@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:03:09 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/29 13:02:55 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/04/29 16:11:14 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ class PmergeMe
 		std::vector<unsigned int>	_vector;
 		std::vector<unsigned int>	_sortedVector;
 
-		void			_sort(std::list<unsigned int> &list);
-		void			_sort(std::vector<unsigned int> &vector);
-		std::list< std::pair<unsigned int, unsigned int> >	_makeAndSortPairsList(std::list<unsigned int> &list);
-		std::vector< std::pair<unsigned int, unsigned int> >	_makeAndSortPairsVector(std::vector<unsigned int> &vector);
-		unsigned int	_jacobsthalNumber(unsigned int iJacobsthal);
-		void			_insertIntoList(std::list< std::pair<unsigned int, unsigned int> > pairsList,
-			std::list<unsigned int> insertionSequence, bool odd, unsigned int struggler);
-		void			_insertIntoVector(std::vector< std::pair<unsigned int, unsigned int> > pairsVector,
-									   std::vector<unsigned int> insertionSequence, bool odd, unsigned int struggler);
+		void													_sort(std::list<unsigned int> &list);
+		void													_sort(std::vector<unsigned int> &vector);
+		std::list< std::pair<unsigned int, unsigned int> >		_makeAndSortPairs(std::list<unsigned int> &list);
+		std::vector< std::pair<unsigned int, unsigned int> >	_makeAndSortPairs(std::vector<unsigned int> &vector);
+		void													_insert(std::list< std::pair<unsigned int, unsigned int> > pairsList,
+																	std::list<unsigned int> insertionSequence, bool odd, unsigned int straggler);
+		void													_insert(std::vector< std::pair<unsigned int, unsigned int> > pairsVector,
+																   std::vector<unsigned int> insertionSequence, bool odd, unsigned int straggler);
+		unsigned int											_jacobsthalNumber(unsigned int iJacobsthal);
 
 		template <typename T>
 		void	printContainer(const T &container, const std::string containerName)
@@ -52,6 +52,7 @@ class PmergeMe
 				std::cout << *it << ' ';
 			std::cout << std::endl;
 		}
+
 		template <typename Container>
 		Container	_generateJacobsthalSequence(unsigned int size)
 		{
@@ -67,6 +68,7 @@ class PmergeMe
 			sequenceJacobsthal.push_back(_jacobsthalNumber(iJacobsthal));
 			return (sequenceJacobsthal);
 		}
+
 		template <typename Container>
 		Container _generateInsertionSequence(Container jacobsthalSequence)
 		{
@@ -85,6 +87,7 @@ class PmergeMe
 			}
 			return (insertionSequence);
 		}
+		
 		struct compare
 		{
 			bool operator()(const std::pair<unsigned int, unsigned int>& a, const std::pair<unsigned int, unsigned int>& b)
