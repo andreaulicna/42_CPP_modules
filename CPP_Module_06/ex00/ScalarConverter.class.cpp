@@ -6,7 +6,7 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 12:22:54 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/20 19:12:28 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/05/03 16:50:04 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,12 @@ static bool isDouble(const std::string &literal)
 {
 	std::istringstream	iss(literal);
 	double				value;
-	char				ch;
 
 	iss >> value;
 	if (iss.fail())
 		return false;
-	iss >> ch;
-	return (iss.eof() || std::isspace(ch));
+	return (literal[literal.size() - 1] == '.'
+		|| (literal[literal.size() - 2] == '.' && literal[literal.size() - 1] == '0'));
 }
 
 static Type	detectType(const std::string &literal)
@@ -85,12 +84,12 @@ static Type	detectType(const std::string &literal)
 	if (literal == "-inff" || literal == "+inff" || literal == "nanf"
 		|| literal == "-inf" || literal == "+inf" || literal == "nan")
 		return (PSEUDO);
-	else if (isInteger(literal))
-		return (INT);
 	else if (isFloat(literal))
 		return (FLOAT);
 	else if (isDouble(literal))
 		return (DOUBLE);
+	else if (isInteger(literal))
+		return (INT);
 	else if (isChar(literal))
 		return (CHAR);
 	return (WRONG);
