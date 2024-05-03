@@ -6,12 +6,11 @@
 /*   By: aulicna <aulicna@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 09:35:17 by aulicna           #+#    #+#             */
-/*   Updated: 2024/04/21 09:57:36 by aulicna          ###   ########.fr       */
+/*   Updated: 2024/05/03 11:28:00 by aulicna          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
-#include <iostream>
 
 void	addTen(double &num)
 {
@@ -30,20 +29,20 @@ int	main(void)
 		std::cout << arrInts[i] << ", ";
 	std::cout << arrInts[9] << std::endl;
 	std::cout << "Print ints via iter:\n"; 
-	::iter(arrInts, 9, ::print);
+	::iter(arrInts, 9, ::myPrint<int>);
 	std::cout << arrInts[9] << std::endl;
 	std::cout << "Print floats via iter:\n"; 
-	::iter(arrFloats, 2, ::print);
+	::iter(arrFloats, 2, ::myPrint<float>);
 	std::cout << arrFloats[2] << std::endl;
 	std::cout << "Print doubles via iter:\n"; 
-	::iter(arrDoubles, 2, ::print);
+	::iter(arrDoubles, 2, ::myPrint<double>);
 	std::cout << arrDoubles[2] << std::endl;
 	std::cout << "Add ten to each element and then print doubles via iter:\n"; 
 	::iter(arrDoubles, 3, addTen);
-	::iter(arrDoubles, 2, ::print);
+	::iter(arrDoubles, 2, ::myPrint<double>);
 	std::cout << arrDoubles[2] << std::endl;
 	std::cout << "Print strings via iter:\n"; 
-	::iter(arrStrings, 2, ::print);
+	::iter(arrStrings, 2, ::myPrint<std::string>);
 	std::cout << arrStrings[2] << std::endl;
 	
 	return (0);
